@@ -1,6 +1,6 @@
 header{
   width:100%;
-  height: 100px;
+  height: 70px;
   background-color: var(--color-primario);
   display: flex;
   flex-direction: row;
@@ -9,9 +9,10 @@ header{
 }
 
 .header__logo{
-  width: 100px;
+  width: 80px;
   height: auto;
   margin-left: 20px;
+  margin-top: 7px;
 }
 
 .header__barraBusqueda{
@@ -21,9 +22,9 @@ header{
 
 .header__busqueda{
   background-color: var(--color-botonBusqueda);
-  width: 70px;
-  height: 50px;
-  margin-top: 15px;
+  width: 50px;
+  height: 40px;
+  margin-top: 21px;
   border-radius: 0px 20px 20px 0px;
   border: none;
 }
@@ -35,8 +36,8 @@ header{
 .header__inputBusqueda{
   background-color: var(--color-busqueda);
   width: 30vw;
-  height: 50px;
-  margin-top: 15px;
+  height: 40px;
+  margin-top: 21px;
   border-radius: 20px 0px 0px 20px;
   border: none;
   font-size: medium;
