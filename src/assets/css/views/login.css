@@ -1,0 +1,86 @@
+.formulario{
+    width: 40vw;
+    height: 500px;
+    background-color: var(--color-secundario);
+    border-radius: 20px;
+
+    display: block;
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 40px;
+}
+
+.login, .registro{
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+label{
+    font-family: var(--fuente-texto);
+    font-size: 1.25rem;
+    font-weight: 200;
+    display: block;
+    margin: 10px;
+    margin-left: 7vw;
+    color: var(--color-texto);
+}
+
+
+input{
+    width: 25vw;
+    height: 30px;
+    border:none;
+    background-color: #ffddd290;
+    margin-left: 7vw;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    color: var(--color-texto);
+    font-size: 0.8rem;
+}
+
+input[type=checkbox]{
+    width: 20px;
+    height: 20px;
+}
+
+
+label.recordar{
+    position: relative;
+    bottom: 55px;
+    left: 25px;
+    color: var(--color-texto);
+}
+
+.no__registrado{
+    position: absolute;
+    top: 64vh;
+    margin-left: 7vw;
+    
+
+}
+.flor-derecha{
+    position: absolute;
+    right: 0px;
+    top: 7vh;
+    width: 25vw;
+    height: auto;
+}
+
+.flor-izquierda{
+    position: absolute;
+    float: left;
+    top: 58vh;
+}
+
+.flor-izquierda__registro{
+    position: absolute;
+    float: left;
+    top: 123vh;
+    width: 25vw;
+}
+
+.errorLogin{
+    margin-left: 7vw;
+    font-size: 0.8rem;
+}

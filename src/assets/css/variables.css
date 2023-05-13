@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@500&family=Nerko+One&display=swap');
+
+:root{
+    --color-fondo: #F6F1E6;
+    --color-primario: #7B9E89;
+    --color-secundario: #F9E6E4;
+    --color-input: #F3D1B9;
+    --color-texto-header: #E0CFC0;
+    --color-boton: #d95c39d6;
+    --color-hover: #c85435;
+    --color-texto: #000000;
+    --fuente-texto: 'Karla', sans-serif;
+    --fuente-titulo: 'Nerko One', cursive;
+    --color-boton2: #DCA49D;
+    --color-busqueda: #b5d5e8d0;
+    --color-botonBusqueda: #708D9F;
+}
+

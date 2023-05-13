@@ -1,0 +1,43 @@
+button{
+    background-color: var(--color-boton);
+    font-size: large;
+    font-family: var(--fuente-titulo);
+    color: var(--color-fondo);
+    border-radius: 10px;
+    border: none;
+}
+
+button:hover{
+    background-color: var(--color-hover);
+}
+
+.btn__pequenio{
+    width: 150px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.btn__mediano{
+    width: 200px;
+    height: 50px;
+}
+
+.btn__grande{
+    width: 20%;
+    height: 80px;
+}
+
+.btn__datos{
+    background-color: var(--color-boton2);
+    color: var(--color-texto);
+    font-size: 2em;
+}
+
+.btn__datos:hover{
+    background-color: #dca49ddf;
+}
+
+.btn__login{
+    margin-top: 20px;
+    margin-left: 33%;
+}

@@ -1,0 +1,12 @@
+@import './bases/bases.css';
+@import './bases/resets.css';
+
+@import './variables.css';
+
+@import './components/header.css';
+@import './components/footer.css';
+@import './components/botones.css';
+
+@import './views/login.css';
+@import './views/contacto.css';
+

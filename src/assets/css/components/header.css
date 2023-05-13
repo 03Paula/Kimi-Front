@@ -1,0 +1,76 @@
+header{
+  width:100%;
+  height: 100px;
+  background-color: var(--color-primario);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo{
+  width: 100px;
+  height: auto;
+  margin-left: 20px;
+}
+
+.header__barraBusqueda{
+  display: flex;
+  flex-direction: row;
+}
+
+.header__busqueda{
+  background-color: var(--color-botonBusqueda);
+  width: 70px;
+  height: 50px;
+  margin-top: 15px;
+  border-radius: 0px 20px 20px 0px;
+  border: none;
+}
+
+.header__busqueda:hover{
+  background-color: #648193;
+}
+
+.header__inputBusqueda{
+  background-color: var(--color-busqueda);
+  width: 30vw;
+  height: 50px;
+  margin-top: 15px;
+  border-radius: 20px 0px 0px 20px;
+  border: none;
+  font-size: medium;
+  color: rgba(0, 0, 0, 0.624);
+  padding-left: 20px;
+  
+}
+
+input::placeholder {
+  color: rgba(49, 47, 47, 0.47);
+}
+.nav-bar{
+  width: 180px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.p_header{
+  color:  var(--color-texto-header);
+  font-family: var(--fuente-titulo);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.iconos_header{
+  width: 24px;
+  align-items: center;
+  align-self: center;
+}
+
+.link__usuario, .link__contacto{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}

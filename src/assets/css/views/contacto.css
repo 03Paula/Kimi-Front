@@ -1,0 +1,106 @@
+.logoTienda{
+    width: 55%;
+    height: 55%;
+    margin-left: 20%;
+}
+
+.contacto{
+    display: flex;
+}
+
+.contactanos{
+    width: 50vw;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #E0CFC0;
+}
+
+.contactoTitulo{
+    color: var(--color-texto);
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.contacto__h6{
+    width: 40vw;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-left: 5vw;
+}
+
+.lineaVertical2{
+    border-left: 3px solid #713030;   
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+textarea{
+    background-color: var(--color-input);
+    display: block;
+    margin-left: 7vw;
+    margin-bottom: 20px;
+    width: 25vw;
+    height: 170px;
+    padding: 10px;
+    font-size: 0.8rem;
+    border: none;
+}
+
+.formulario__contacto{
+    margin-top: 40px;
+    align-items: center;
+}
+
+.btn__enviarComentario{
+    position:absolute;
+    bottom: 70px;
+    margin-left: 7vw;
+}
+
+.politicas{
+    position: relative;
+    bottom: 55px;
+    margin-left: 9vw;
+}
+
+
+.erroresContacto{
+    margin-left: 7vw;
+    font-size: 0.8rem ;
+}
+
+label{
+    font-family: var(--fuente-texto);
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: block;
+    margin: 10px;
+    margin-left: 7vw;
+    color: var(--color-texto);
+}
+
+
+input, select{
+    width: 25vw;
+    height: 30px;
+    border:none;
+    background-color: var(--color-input);
+    margin-left: 7vw;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    color: var(--color-texto);
+    font-size: 0.8rem;
+}
+
+input[type=checkbox]{
+    width: 20px;
+    height: 20px;
+}
