@@ -7,6 +7,6 @@
 @import './components/footer.css';
 @import './components/botones.css';
 
-@import './views/login.css';
 @import './views/contacto.css';
+@import './views/login.css';
 

@@ -1,86 +1,53 @@
-.formulario{
-    width: 40vw;
-    height: 500px;
-    background-color: var(--color-secundario);
-    border-radius: 20px;
+.login{
+    width: 100vw;
+    min-height: 91.5vh;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.formularios{
+    width: 45%;
+    min-height: max-content;
+    background-color: var(--color-secundario);
+    border-radius: 0px 0px 20px 20px;
+}
+
+.tab{
+    background-color: var(--color-fondo);
+}
+
+.btn__tab{
+    width: 50%;
+    height: 60px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: var(--color-boton2);
+    color: var(--color-texto);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.btn__tab:hover{
+    background-color: var(--color-secundario);
+}
+.active{
+    background-color: var(--color-secundario);
+}
+
+.login__form > label, .login__form > input{
+    margin-left: 0px;
+}
+
+.btn__login, .btn__registro{
     display: block;
     margin: auto;
-    margin-top: 10vh;
     margin-bottom: 40px;
+    margin-top: 30px;
 }
 
-.login, .registro{
-    text-align: center;
-    padding-top: 20px;
-    margin-bottom: 20px;
-}
-
-label{
-    font-family: var(--fuente-texto);
-    font-size: 1.25rem;
-    font-weight: 200;
-    display: block;
-    margin: 10px;
-    margin-left: 7vw;
-    color: var(--color-texto);
-}
-
-
-input{
-    width: 25vw;
-    height: 30px;
-    border:none;
-    background-color: #ffddd290;
-    margin-left: 7vw;
-    margin-bottom: 20px;
-    padding-left: 10px;
-    color: var(--color-texto);
-    font-size: 0.8rem;
-}
-
-input[type=checkbox]{
-    width: 20px;
-    height: 20px;
-}
-
-
-label.recordar{
-    position: relative;
-    bottom: 55px;
-    left: 25px;
-    color: var(--color-texto);
-}
-
-.no__registrado{
-    position: absolute;
-    top: 64vh;
-    margin-left: 7vw;
-    
-
-}
-.flor-derecha{
-    position: absolute;
-    right: 0px;
-    top: 7vh;
-    width: 25vw;
-    height: auto;
-}
-
-.flor-izquierda{
-    position: absolute;
-    float: left;
-    top: 58vh;
-}
-
-.flor-izquierda__registro{
-    position: absolute;
-    float: left;
-    top: 123vh;
-    width: 25vw;
-}
-
-.errorLogin{
-    margin-left: 7vw;
-    font-size: 0.8rem;
+.errorRegistro{
+   text-align: center;
 }
