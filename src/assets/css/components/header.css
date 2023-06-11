@@ -75,3 +75,9 @@ input::placeholder {
   flex-direction: column;
   justify-items: center;
 }
+
+.header__dialog{
+  background-color: rgba(95, 95, 95, 0.17);
+  display: flex;
+  flex-direction: row;
+}

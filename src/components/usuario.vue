@@ -1,11 +1,17 @@
 <script setup>
     import Header from './header.vue';
+    import Footer from './footer.vue';
+    import Tarjeta from './tarjeta.vue';
+    import Pedido from './pedido.vue';
+    import Direccion from './direccion.vue';
+    import Mensaje from './mensaje.vue';
 </script>
 
 <template>
     <Header /> 
     <body>
-        <div class="botones">
+        <section class="usuario">
+        <section class="botones">
             <button class="btn__grande btn__datos" @click="misDatos()" >
                 Mis datos
             </button>
@@ -18,90 +24,117 @@
             <button class="btn__grande btn__datos" @click="misTarjetas()" >
                 Tarjetas
             </button>
-        </div>
+        </section>
+        <Mensaje v-if="mostrarMensaje">
+            <template #mensaje>Se ha añadido correctamente.</template>
+        </Mensaje>
 
-        <div id="usuario" class="datosUsuario" v-if="mostrarDatos" >
-            <div class="informacionUsuario">
-                <img  class="avatar" src="../assets/images/Hachi.jpg" alt="Avatar del usuario" />
+        <section id="usuario" class="datosUsuario" v-if="mostrarDatos" >
+            <h2 class="datos__titulo">Mis datos</h2>
+            <article class="informacionUsuario">
+                <img  class="avatar" src="../assets/img/Hachi.jpg" alt="Avatar del usuario"/>
                 <div class="lineaVertical"></div>
                 
-                <div class="datos">
+                <article class="datos">
                     <h6>Nombre: {{ nombre }}</h6>
                     <h6>Apellidos: {{ apellidos }}</h6>
                     <h6>Email: {{ email }}</h6>
-                    <h6>Nombre de usuario: {{ nombreusu }}</h6>
-                </div>
-            </div>
-            <div class="botones">
-                <button class="btn__mediano" @click="cerrarSesion">
+                    <h6>Número de teléfono: {{ tef }}</h6>
+                </article>
+            </article>
+            <dialog class="sesion__dialog" id="sesion__dialog" modal-mode="mega">
+                <h6 class="dialog__h6">¿Estás seguro que quieres cerrar sesión?</h6>
+                <footer class="footer__dialog">
+                    <button class="btn__mediano btn__cancelar" type="reset" onclick="sesion__dialog.close()">Cancelar</button>
+                    <button class="btn__mediano btn__confirmar">
+                        Confirmar
+                    </button>
+                </footer>
+            </dialog>
+            <article class="botones">
+                <button class="btn__mediano" onclick="sesion__dialog.showModal()">
                     Cerrar Sesión
                 </button>
-            </div>
-            
-        </div>
-
-        <div id="pedidos" class="datosUsuario" v-if="mostrarPedidos" >
-            <h2 class="texto__usuario">Mis pedidos: </h2>
-            <p class="texto__usuario">pedido</p>
-        </div>
-
-        <div id="direcciones" class="datosUsuario"  v-if="mostrarDirecciones" >
-            <h2 class="texto__usuario">Mis direcciones</h2>
-            <p class="texto__usuario">{{ direcciones }}</p>
-            <button @click="otraDireccion()">
-                Añadir dirección
-            </button>
-            <form v-if="nuevadireccion" v-on:submit.prevent="direccion()" class="formulario formularioUsuario">
-                <label for="tipoCalle">Tipo de calle</label>
-                <input id="tipoCalle" name="tipoCalle" placeholder="Avenida, calle..." type="text" v-model="calle" v-on:blur="calleValida" required />
-                <p v-if="errorCalle" class="mensajesError">Escribe una calle válida</p>
-                <label for="nombreCalle">Nombre de la calle</label>
-                <input id="nombreCalle" name="nombreCalle" type="text" v-model="nombreCalle" v-on:blur="nombreValido" required />
-                <p v-if="errorNombre" class="mensajesError">Escribe un nombre válido</p>
-                <label for="numeroCalle">Número</label>
-                <input type="number" id="numeroCalle" name="numeroCalle" v-model="numero" v-on:blur="numeroValido" required />
-                <p v-if="errorNumero" class="mensajesError">No has introducido un número</p>
-                <label for="piso">Piso</label>
-                <input id="piso" name="piso" type="text" v-model="piso" v-on:blur="pisoValido" />
-                <p v-if="errorPiso" class="mensajesError">Escribe el número de piso</p>
-                <label for="provincia">Provincia</label>
-                <input id="provincia" name="provincia" type="text" v-model="provincia" v-on:blur="provinciaValida" required />
-                <p v-if="errorProvincia" class="mensajesError">Escribe una provincia válida</p>
-                <label for="codigoPostal">Código Postal</label>
-                <input id="codigoPostal" name="codigoPostal" type="text" v-model="codigoPostal" v-on:blur="codigoValido" required />
-                <p v-if="errorPostal" class="mensajesError">Escribe un cógigo postal válido (5 dígitos)</p>
-                <button class="btn__usuario">
-                    Añadir
+                <button class="btn__mediano">
+                    Editar datos
                 </button>
-            </form>
+            </article>
             
-        </div>
+        </section>
 
-        <div id="tarjetas" class="datosUsuario" v-if="mostrarTarjetas" >
-            <h2 class="texto__usuario" >Mis tarjetas</h2>
-            <p class="texto__usuario" >{{ tarjetas }}</p>
-            <button @click="otraTarjeta()">
-                Añadir Tarjeta
-            </button>
-            <form v-if="nuevatarjeta" v-on:submit.prevent="tarjeta()" class="formulario formularioTarjeta">
-                <label for="titular">Nombre del titular</label>
-                <input id="titular" name="titular"  type="text" v-model="titular" v-on:blur="titularValido" required />
-                <p v-if="errorTitular" class="mensajesError">Escribe un nombre de titular válido</p>
-                <label for="numeroTarjeta">Número de la tarjeta</label>
-                <input id="numeroTarjeta" name="numeroTarjeta" type="text" v-model="numeroTarjeta" v-on:blur="tarjetaValida" placeholder="XXXX XXXX XXXX XXXX" required />
-                <p v-if="errorTarjeta" class="mensajesError">Escribe un número válido</p>
-                <label for="vencimiento">Fecha de vencimiento</label>
-                <input id="vencimiento" name="vencimiento" type="text" v-model="vencimiento" v-on:blur="vencimientoValido" placeholder="dd/mm" required/>
-                <p v-if="errorVencimiento" class="mensajesError">Escribe una fecha de vencimiento válida (dd/mm)</p>
-                <button>
-                    Añadir
-                </button>
-            </form>
-        </div>
+        <section id="pedidos" class="datosUsuario" v-if="mostrarPedidos" >
+            <h2 class="datos__titulo">Mis pedidos: </h2>
+            <Pedido />
+        </section>
 
-        <Volver />
+        <section id="direcciones" class="datosUsuario"  v-if="mostrarDirecciones" >
+            <h2 class="datos__titulo">Mis direcciones</h2>
+            <Direccion />
+            <dialog class="dir__dialog" id="dir__dialog" modal-mode="mega">
+                <header class="header__dialog">
+                    <h5><img src="../assets/img/ubicacion.png" alt="icono de ubicación" class="header__dialog__img" />Nueva Dirección </h5>
+                </header>
+                <form class="dialog__form" method="tarjeta__dialog">
+                    <label for="calle">Nombre de la calle <font color="red">*</font></label>
+                    <input id="calle" name="calle" type="text" v-model="calle" v-on:blur="calleValida" placeholder="Ej: avda Castro Nº 33" class="input__dialog" required />
+                    <p v-if="errorCalle" class="dialog__mensajesError">Escribe un nombre válido.</p>
+                    <label for="piso">Piso</label>
+                    <input id="piso" name="piso" type="text" v-model="piso" v-on:blur="pisoValido" class="input__dialog" />
+                    <p v-if="errorPiso" class="dialog__mensajesError">Escribe un número de piso válido.</p>
+                    <label for="provincia">Provincia <font color="red">*</font></label>
+                    <input id="provincia" name="provincia" type="text" v-model="provincia" v-on:blur="provinciaValida" class="input__dialog" required />
+                    <p v-if="errorProvincia" class="dialog__mensajesError">Escribe una provincia válida.</p>
+                    <label for="pais">País <font color="red">*</font></label>
+                    <input id="pais" name="pais" type="text" v-model="pais" v-on:blur="paisValido" class="input__dialog" required />
+                    <p v-if="errorPais" class="dialog__mensajesError">Escribe un pais válido.</p>
+                    <label for="ciudad">Ciudad <font color="red">*</font></label>
+                    <input id="ciudad" name="ciudad" type="text" v-model="ciudad" v-on:blur="ciudadValida" class="input__dialog" required />
+                    <p v-if="errorCiudad" class="dialog__mensajesError">Escribe una ciudad válida.</p>
+                    <label for="codigoPostal">Código Postal <font color="red">*</font></label>
+                    <input id="codigoPostal" name="codigoPostal" type="text" v-model="codigoPostal" v-on:blur="codigoValido" class="input__dialog" required />
+                    <p v-if="errorPostal" class="dialog__mensajesError">Escribe un cógigo postal válido (5 dígitos).</p>
+                </form>
+                <footer class="footer__dialog">
+                    <button class="btn__mediano btn__cancelar" type="reset" onclick="dir__dialog.close()">Cancelar</button>
+                    <button class="btn__mediano btn__confirmar" @click="direccion()">
+                        Añadir
+                    </button>
+                </footer>
+            </dialog>
+            <button onclick="dir__dialog.showModal()" class="btn__mediano btn__direccion">Añadir Dirección </button>
+        </section>
+
+        <section id="tarjetas" class="datosUsuario" v-if="mostrarTarjetas" >
+            <h2 class="datos__titulo" >Mis tarjetas</h2>
+                <Tarjeta />
+                <p class="texto__usuario" >{{ tarjetas }}</p>
+            <dialog class="tarjeta__dialog" id="tarjeta__dialog" modal-mode="mega">
+                <header class="header__dialog">
+                    <h5><img src="../assets/img/tarjeta-bancaria.png" alt="icono tarjeta" class="header__dialog__img" />Nueva Tarjeta </h5>
+                </header>
+                <form class="dialog__form" method="tarjeta__dialog">
+                    <label for="titular">Nombre del titular <font color="red">*</font></label>
+                    <input id="titular" name="titular"  type="text" v-model="titular" v-on:blur="titularValido" class="input__dialog" required />
+                    <p v-if="errorTitular" class="dialog__mensajesError">Escribe un nombre de titular válido</p>
+                    <label for="numeroTarjeta">Número de la tarjeta <font color="red">*</font></label>
+                    <input id="numeroTarjeta" name="numeroTarjeta" type="text" v-model="numeroTarjeta" v-on:blur="tarjetaValida" placeholder="XXXX XXXX XXXX XXXX" class="input__dialog" required />
+                    <p v-if="errorTarjeta" class="dialog__mensajesError">Escribe un número válido</p>
+                    <label for="vencimiento">Fecha de vencimiento <font color="red">*</font></label>
+                    <input id="vencimiento" name="vencimiento" type="text" v-model="vencimiento" v-on:blur="vencimientoValido" placeholder="dd/mm" class="input__dialog" required/>
+                    <p v-if="errorVencimiento" class="dialog__mensajesError">Escribe una fecha de vencimiento válida (dd/mm)</p>
+                </form>
+                <footer class="footer__dialog">
+                    <button class="btn__mediano btn__cancelar" type="reset" onclick="tarjeta__dialog.close()">Cancelar</button>
+                    <button class="btn__mediano btn__confirmar" @click="tarjeta()" >
+                        Añadir
+                    </button>
+                </footer>
+            </dialog>
+            <button onclick="tarjeta__dialog.showModal()" class="btn__mediano btn__tarjeta">Añadir Tarjeta</button>
+        </section>
+        <Footer />
+    </section>
     </body>
-
 </template>
 
 <script>
@@ -182,17 +215,18 @@
                 mostrarPedidos:false,
                 mostrarDirecciones:false,
                 mostrarTarjetas:false,
+                mostrarMensaje:false,
 
                 calle: "",
-                nombreCalle: "",
-                numero: "",
+                pais: "",
+                ciudad: "",
                 piso: "",
                 provincia: "",
                 codigoPostal: "",
                 errorCalle:false,
-                errorNombre:false,
-                errorNumero:false,
-                errorPiso: false,
+                errorPiso:false,
+                errorPais:false,
+                errorCiudad: false,
                 errorProvincia:false,
                 errorPostal:false,
 
@@ -205,21 +239,14 @@
                 errorVencimiento:false,
 
                 nombresReg:  new RegExp(/^[A-z]{3,}[\s]*[A-z]*[\s]*[A-z]*[\s]*[A-z]*/),
-                numeroReg: new RegExp(/^\d{1,3}$/),
                 postalReg: new RegExp(/^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/),
+                numeroReg: new RegExp(/^\d{1,3}$/),
                 tarjetaReg : new RegExp(/^(?:\d{15,16}|\d{4}(?:(?:\s+\d{4}){3}|\s+\d{6}\s\d{5}))$/),
                 vencimientoReg: new RegExp(/^\d{2}\/\d{2}$/)
 
             }
         },
         methods: {
-            cerrarSesion(){
-                if(window.confirm('¿Estás seguro que quieres cerrar sesión?')){
-                    localStorage.clear();
-                    this.$router.push('/');
-                }
-            },
-
             misDatos(){
                 this.mostrarDatos = true;
                 this.mostrarDirecciones = false;
@@ -264,16 +291,16 @@
                 }
             },
 
+            ciudadValida(){
+                this.errorCiudad = !this.nombresReg.test(this.ciudad);
+            },
+
             calleValida(){
                 this.errorCalle = !this.nombresReg.test(this.calle);
             },
 
-            nombreValido(){
-                this.errorNombre = !this.nombresReg.test(this.nombreCalle);
-            },
-
-            numeroValido(){
-                this.errorNumero = !this.numeroReg.test(this.numero);
+            paisValido(){
+                this.errorPais = !this.nombresReg.test(this.pais);
             },
 
             pisoValido(){
@@ -289,10 +316,10 @@
             },
 
             direccion(){
-                if(!this.errorCalle && !this.errorNombre && !this.errorProvincia && !this.errorNumero && !this.errorPiso && !this.errorPostal){
+                if(!this.errorCiudad && !this.errorNombre && !this.errorProvincia && !this.errorPais && !this.errorPiso && !this.errorPostal){
                     const nuevadir = this.calle + ' ' + this.nombreCalle + ' ' + this.numero + ' ' + this.piso + ' ,' + this.provincia ;
-                    localStorage.setItem("direccion", nuevadir)
-                    alert("nueva dirección añadida");
+                    dir__dialog.close();
+                    this.mostrarMensaje= true,
                     this.$router.push('usuario');
                 }
             },
@@ -311,6 +338,8 @@
 
             tarjeta(){
                 if(!this.errorTitular && !this.errorTarjeta && !this.errorVencimiento){
+                    tarjeta__dialog.close();
+                    this.mostrarMensaje=true;
                     let ultimosNumeros ="";
                     this.numeroTarjeta = this.numeroTarjeta.trim()
                     for( let i=0 ; i < this.numeroTarjeta.length ; i++){
@@ -322,7 +351,6 @@
                     console.log(ultimosNumeros)
                     const credito = '**** **** **** ' + ultimosNumeros;
                     localStorage.setItem("tarjetas", credito);
-                    alert("Tarjeta añadida");
                 }
             }
 

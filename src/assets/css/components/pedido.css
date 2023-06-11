@@ -1,0 +1,18 @@
+.pedido{
+    width: 60%;
+    height: 30%;
+    background-color: #c2bbbb6e;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.pedido__caja{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+.pedido__info , .pedido__imagen{
+    margin-top: 20px;
+    margin-right: 20px;
+}

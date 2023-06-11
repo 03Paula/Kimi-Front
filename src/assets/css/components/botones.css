@@ -28,6 +28,8 @@ button:hover{
 }
 
 .btn__datos{
+    width: 200px;
+    padding: 20px;
     background-color: var(--color-boton2);
     color: var(--color-texto);
     font-size: 2em;
@@ -40,4 +42,28 @@ button:hover{
 .btn__login{
     margin-top: 20px;
     margin-left: 33%;
+}
+
+.btn__cancelar{
+    background-color: white;
+    color: var(--color-boton);
+    border: 2px solid var(--color-boton);
+    cursor: pointer;
+}
+
+.btn__cancelar:hover{
+    background-color: var(--color-boton);
+    color: white;
+}
+
+.btn__confirmar{
+    background-color: white;
+    color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    cursor: pointer;
+}
+
+.btn__confirmar:hover{
+    background: var(--color-primario);
+    color: white;
 }

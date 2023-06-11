@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <RouterLink to="/"><img alt="Logo de la tienda" src="../assets/img/logoTienda 1.png" class="header__logo"/> </RouterLink>
+        <RouterLink to="/"><img alt="Logo de la tienda" src="../assets/img/logoTienda1.png" class="header__logo"/> </RouterLink>
         <article class="header__barraBusqueda">
             <input class="header__inputBusqueda" type="text" placeholder="Buscar en kimi" />
             <button class="header__busqueda"><img alt="icono de una lupa" src="../assets/img/lupa.png"/></button>

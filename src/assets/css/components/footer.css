@@ -38,3 +38,11 @@ footer{
 .icono__rrss{
     width: 26px;
 }
+
+.footer__dialog{
+    background-color: rgba(95, 95, 95, 0.17);
+    height: 80px;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}

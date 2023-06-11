@@ -1,0 +1,39 @@
+.direccion{
+    width: 60%;
+    height: 30%;
+    background-color: #c2bbbb4d;
+    display: flex;
+    border-radius: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.direccion__img, .direccion__datos{
+    padding: 20px;
+}
+
+.direccion__acciones{
+    display: flex;
+    margin: 10px;
+   text-decoration:underline;
+   height: fit-content;
+   position: relative;
+   top: 80%;
+}
+
+.accion:hover{
+    cursor: pointer;
+    color: var(--color-primario);
+    font-size: 1.1em;
+}
+
+
+.separador{
+    height: 20px;
+    border: 1px solid black;
+    margin: 10px;
+    margin-top: 0px;
+}

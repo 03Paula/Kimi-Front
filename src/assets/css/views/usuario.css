@@ -1,0 +1,104 @@
+.usuario{
+    width: 100vw;
+    height: 91.5vh;
+    max-height: max-content;
+}
+
+.botones{
+    display: flex;
+    flex-flow: row wrap;
+    width: 95%;
+    margin: auto;
+    margin-top: 40px;
+    gap: 60px;
+}
+
+.datosUsuario{
+    width: 100vw;
+    height: 91.5vh;
+}
+
+.avatar{
+    width: 300px;
+    height: 300px;
+    border-radius: 900px;
+    border: 2px solid var(--color-secundario);
+}
+
+.informacionUsuario{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.lineaVertical{
+    border-left: 2px solid var(--color-texto);
+}
+
+.datos{
+    margin-top: 50px;
+}
+
+.datos__titulo{
+    margin-top: 20px;
+    margin-left: 12%;
+}
+
+.btn__tarjeta{
+    margin-top: 30px;
+}
+
+.btn__tarjeta, .btn__direccion, .btn__anadir{
+    margin-left: 20%;
+}
+
+.header__dialog__img{
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.tarjeta__dialog, .dir__dialog, .sesion__dialog, .eliminar__dialog{
+    width: 40%;
+    display: grid;
+    margin: auto;
+    padding: 0;
+    position: fixed;
+    inset: 0;
+    background: rgb(255, 255, 255);
+    color: var(--color-texto);
+    max-inline-size: min(90vw, var(--size-content-3));
+    max-block-size: min(80vh, 100%);
+    max-block-size: min(80dvb, 100%);
+    overflow: hidden;
+    border: none;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 60px 5px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 60px 5px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 60px 5px rgba(0,0,0,0.5);
+}
+
+.dir__dialog{
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.dialog__h6{
+    padding: 40px;
+}
+
+dialog:not([open]) {
+    pointer-events: none;
+    opacity: 0;
+}
+
+
+.input__dialog{
+    width: 60%;
+    margin-left: 20%;
+}
+
+.dialog__mensajesError{
+    margin-left: 20%;
+}
