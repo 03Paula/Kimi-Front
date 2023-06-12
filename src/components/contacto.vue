@@ -99,7 +99,7 @@
             contactar(){
                 if(!this.errorNombre && !this.errorEmail && !this.errorComentario){
                     alert("Comentarios enviados");
-                    this.$router.push('listado');
+                    this.$router.push('/');
                 }
             }
         }

@@ -5,6 +5,7 @@
     import Pedido from './pedido.vue';
     import Direccion from './direccion.vue';
     import Mensaje from './mensaje.vue';
+    import { mapGetters } from 'vuex';
 </script>
 
 <template>
@@ -36,10 +37,10 @@
                 <div class="lineaVertical"></div>
                 
                 <article class="datos">
-                    <h6>Nombre: {{ nombre }}</h6>
-                    <h6>Apellidos: {{ apellidos }}</h6>
-                    <h6>Email: {{ email }}</h6>
-                    <h6>Número de teléfono: {{ tef }}</h6>
+                    <h6>Nombre: {{ usuario.nombre }}</h6>
+                    <h6>Apellidos: {{ usuario.apellidos }}</h6>
+                    <h6>Email: {{ usuario.email}}</h6>
+                    <h6>Número de teléfono: {{ usuario.telefono }}</h6>
                 </article>
             </article>
             <dialog class="sesion__dialog" id="sesion__dialog" modal-mode="mega">
@@ -146,7 +147,6 @@
  * @vue-data {String} nombre - Almacena el nombre del usuario que se encuentra almacenado en el localStorage.
  * @vue-data {String} apellidos - Almacena los apellidos del usuario que se encuentran almacenados en el localStorage.
  * @vue-data {String} email - Almacena el email del usuario que se encuentra almacenado en el localStorage.
- * @vue-data {String} nombreusu - Almacena el nombre de usuario que se encuentra almacenado en el localStorage. 
  * @vue-data {Boolean} nuevadireccion - Si es verdadero se muestra el formulario para una nueva dirección.
  * @vue-data {String} direcciones - Almacena las direcciones del usuario que se encuentran almacenados en el localStorage.
  * @vue-data {String} tarjetas - Almacena la tarjeta del usuario que se encuentra almacenado en el localStorage.
