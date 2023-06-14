@@ -1,7 +1,6 @@
 <script setup>
     import Header from './header.vue';
     import Footer from './footer.vue';
-    import Carta from './cartaProducto.vue';
 </script>
 
 
@@ -12,7 +11,7 @@
             <aside class="filtros">
                 <h6 class="filtro__titulo">Productos</h6>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="checkbox" class="filtroCheck" onselect="FiltrarPorMangas()" />
                     <p class="filtro__opciones">Mangas</p>
                 </article>
                 <article class="filtro__opcion">
@@ -64,9 +63,47 @@
             </aside>
 
             <article class="productos">
-                <Carta />
+                
             </article>
         </section>
+
     </body>
     <Footer />
 </template>
+
+
+<script>
+/**
+ * @file index.vue - Componente para la página de listado.
+ * @author Paula Flor
+ * 
+ * @vue-data {Object} mangas - Almacena todos los mangas.
+ * @vue-data {String} busqueda - Almacena el nombre del manga a buscar.
+ * 
+ * @vue-event {Object} getAllMangas - Obtiene todos los mangas.
+ * @vue-event {Object} getOneManga - Obtiene el manga pedido.
+ * 
+ */
+
+ export default {
+        data(){
+            return{
+                mangas: {},
+                figuras: {},
+                busqueda:"",
+                manga:false,
+                figura:false
+            }
+        },
+        mounted(){
+            this.getAllMangas();
+            this.getAllFiguras();
+        },
+        methods: {
+            async getAllMangas(){
+                const response = await fetch(`http://localhost:8080/productos/mangas`);
+                this.mangas = await response.json();
+            }
+        }
+    }
+</script>

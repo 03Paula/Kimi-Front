@@ -23,8 +23,9 @@ button:hover{
 }
 
 .btn__grande{
-    width: 20%;
-    height: 80px;
+    width: 30%;
+    height: 60px;
+    margin-top: 20px;
 }
 
 .btn__datos{
@@ -66,4 +67,27 @@ button:hover{
 .btn__confirmar:hover{
     background: var(--color-primario);
     color: white;
+}
+
+.btn__cantidad{
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-texto-header);
+    color: black;
+    border-radius: 0px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.btn__cantidad:hover{
+    background-color: #cbbdb0;
+}
+
+.menos, .mas{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.btn__compra{
+display: block;
+margin: auto;
 }

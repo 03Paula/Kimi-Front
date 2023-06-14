@@ -1,0 +1,52 @@
+.vistaProducto{
+    width: 100vw;
+    min-height: 91.5vh;
+    max-height: max-content;
+    padding-bottom: 60px;
+    display: flex;
+    padding-top: 40px;
+}
+
+
+.masInfo{
+    width: 35%;
+    max-width: 300px;
+    margin-left: 10%;
+    margin-right: 40px;
+}
+
+.masInfo__img{
+    width: 100%;
+    margin-bottom: 15px;
+    padding-right: 60px;
+}
+
+.datos__producto{
+   width: 60%;
+
+}
+
+.datos__productos__h4{
+    font-family: var(--fuente-titulo);
+}
+
+.datos__productos__texto{
+    padding-bottom: 20px;
+}
+
+.datos__productos__genero{
+    width: max-content;
+    margin-top: 20px;
+    background-color: var(--color-texto-header);
+    padding: 10px;
+    border-radius: 20px;    
+}
+
+.precio{
+    margin-top: 20px;
+}
+
+.cantidad{
+    display: flex;
+    flex-direction: row;
+}

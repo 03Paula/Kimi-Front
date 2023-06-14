@@ -3,6 +3,7 @@ import login from '@/components/login.vue'
 import listado from '@/components/index.vue'
 import contacto from '@/components/contacto.vue'
 import usuario from '@/components/usuario.vue'
+import producto from '@/components/producto.vue'
 
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/usuario',
       name: 'usuario',
       component: usuario
+    },
+    {
+      path: '/producto',
+      name: 'producto',
+      component: producto
     }
 
   ]
