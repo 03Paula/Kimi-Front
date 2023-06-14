@@ -36,7 +36,7 @@
                 <img  class="avatar" src="../assets/img/Hachi.jpg" alt="Avatar del usuario"/>
                 <div class="lineaVertical"></div>
                 
-                <article class="datos">
+                <article class="datos" >
                     <h6>Nombre: {{ usuario.nombre }}</h6>
                     <h6>Apellidos: {{ usuario.apellidos }}</h6>
                     <h6>Email: {{ usuario.email}}</h6>
@@ -202,7 +202,8 @@
     export default {
         data() {
             return {
-                usuario: {},
+                usuario : {},
+                /*
                 nombre: localStorage.getItem("usuario"),
                 apellidos: localStorage.getItem("apellidos"),
                 email: localStorage.getItem("email"),
@@ -210,7 +211,7 @@
                 nuevadireccion: false,
                 direcciones: localStorage.getItem("direccion"),
                 tarjetas: localStorage.getItem("tarjetas"),
-
+                */
                 mostrarDatos: true,
                 mostrarPedidos:false,
                 mostrarDirecciones:false,
@@ -245,6 +246,9 @@
                 vencimientoReg: new RegExp(/^\d{2}\/\d{2}$/)
 
             }
+        },
+        computed: {
+            ...mapGetters(['UserLogged', 'usuario'])
         },
         methods: {
             misDatos(){

@@ -30,8 +30,8 @@ const router = createRouter({
       component: usuario
     },
     {
-      path: '/producto',
-      name: 'producto',
+      path: '/producto/:id',
+      name: 'detalle-producto',
       component: producto
     }
 

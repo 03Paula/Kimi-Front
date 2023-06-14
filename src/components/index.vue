@@ -1,69 +1,97 @@
 <script setup>
     import Header from './header.vue';
     import Footer from './footer.vue';
+    import axios from 'axios';
 </script>
 
 
 <template>
     <Header />
     <body>
-        <section class="listado">
+            <section class="listado">
             <aside class="filtros">
                 <h6 class="filtro__titulo">Productos</h6>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" onselect="FiltrarPorMangas()" />
+                    <input type="radio" class="filtroCheck" name="categoria" @click="mostrarMangas()" />
                     <p class="filtro__opciones">Mangas</p>
                 </article>
-                <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                <article class="filtro__opcion" >
+                    <input type="radio" class="filtroCheck" name="categoria" @click="mostrarFiguras()" />
                     <p class="filtro__opciones">Figuras</p>
                 </article>
                 <h6 class="filtro__titulo">Autores</h6>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="autores" value="Tatsuki Fujimoto" @click="mostrarProductoPorAutor" v-model="opcionSelecionada"/>
                     <p class="filtro__opciones">Tatsuki Fujimoto</p>
                 </article>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="autores" />
                     <p class="filtro__opciones">Kentaro Miura</p>
                 </article>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="autores" />
                     <p class="filtro__opciones">Ai Yazawa</p>
                 </article>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="autores" />
                     <p class="filtro__opciones">Gege Akutami</p>
                 </article>
                 <h6 class="filtro__titulo">Géneros</h6>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="genero" />
                     <p class="filtro__opciones">Romance</p>
                 </article>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="genero" />
                     <p class="filtro__opciones">Ciencia Ficción</p>
                 </article>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="genero" />
                     <p class="filtro__opciones">Acción</p>
                 </article>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="genero" />
                     <p class="filtro__opciones">Drama</p>
                 </article>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="genero" />
                     <p class="filtro__opciones">Deportes</p>
                 </article>
                 <article class="filtro__opcion">
-                    <input type="checkbox" class="filtroCheck" />
+                    <input type="radio" class="filtroCheck" name="genero" />
                     <p class="filtro__opciones">Thriller</p>
                 </article>
             </aside>
 
             <article class="productos">
-                
+                <article class="coleccion-producto" v-if="producto"> 
+                    <div class="producto__carta" v-for="producto in this.productos" :key="producto.id">
+                        <img :src="`${producto.imagen}`" alt="imagen del producto" class="producto__imagen" @click="verDetalles(producto.id)">
+                        <h6 onclick="verDetalles(producto.id)" class="producto__nombre">{{ producto.nombre }}</h6>
+                        <h5 class="producto__precio">{{ producto.precio }} €</h5>
+                    </div>
+                </article>
+                <article class="coleccion-mangas" v-if="manga"> 
+                    <div class="producto__carta" v-for="manga in this.mangas" :key="manga.id">
+                        <img :src="`${manga.imagen}`" alt="imagen del producto" class="producto__imagen" @click="verDetalles(manga.id)">
+                        <h6 onclick="verDetalles(manga.id)" class="producto__nombre">{{ manga.nombre }}</h6>
+                        <h5 class="producto__precio">{{ manga.precio }} €</h5>
+                    </div>
+                </article>
+                <article class="coleccion-figuras" v-if="figura"> 
+                    <div class="producto__carta" v-for="figura in this.figuras" :key="figura.id">
+                        <img :src="`${figura.imagen}`" alt="imagen del producto" class="producto__imagen" @click="verDetalles(figura.id)" >
+                        <h6 class="producto__nombre">{{ figura.nombre }}</h6>
+                        <h5 class="producto__precio">{{ figura.precio }} €</h5>
+                    </div>
+                </article>
+                <article class="coleccion-productoAutor" v-if="autor"> 
+                    <div class="producto__carta" v-for="prodautor in this.productosAutor" :key="prodautor.id">
+                        <img :src="`${prodautor.imagen}`" alt="imagen del producto" class="producto__imagen" @click="verDetalles(figura.id)" >
+                        <h6 class="producto__nombre">{{ prodautor.nombre }}</h6>
+                        <h5 class="producto__precio">{{ prodautor.precio }} €</h5>
+                    </div>
+                </article>
             </article>
         </section>
 
@@ -78,7 +106,6 @@
  * @author Paula Flor
  * 
  * @vue-data {Object} mangas - Almacena todos los mangas.
- * @vue-data {String} busqueda - Almacena el nombre del manga a buscar.
  * 
  * @vue-event {Object} getAllMangas - Obtiene todos los mangas.
  * @vue-event {Object} getOneManga - Obtiene el manga pedido.
@@ -88,22 +115,87 @@
  export default {
         data(){
             return{
+                productos: {},
                 mangas: {},
                 figuras: {},
+                productosAutor: {},
                 busqueda:"",
-                manga:false,
-                figura:false
+                manga: false,
+                figura: false,
+                producto: true,
+                checkFigura : true,
+                autor:false,
+                opcionSelecionada: '',
             }
         },
         mounted(){
             this.getAllMangas();
             this.getAllFiguras();
+            this.getAllProductos();
         },
         methods: {
-            async getAllMangas(){
-                const response = await fetch(`http://localhost:8080/productos/mangas`);
-                this.mangas = await response.json();
+            getAllMangas(){
+                axios
+                    .get('http://localhost:8080/kimi/producto/categoria/manga')
+                    .then((result => {
+                        this.mangas = result.data
+                    }))
+                    console.log(this.mangas)
+            },
+            
+            getAllFiguras(){
+                axios
+                    .get('http://localhost:8080/kimi/producto/categoria/figura')
+                    .then((result => {
+                        this.figuras = result.data
+                    }))
+            },
+
+            async getAllProductos(){
+                const response = await fetch(`http://localhost:8080/kimi/productos`);
+                this.productos = await response.json();
+            },
+
+            async getAllProductosByAuthor(){
+                console.log(this.opcionSelecionada);
+                const response = await fetch(`http://localhost:8080/kimi/producto/autor/${this.opcionSelecionada}`);
+                this.productosAutor = await response.json();
+            },
+
+            verDetalles(productoId) {
+                this.$router.push(`/producto/:${productoId}`);
+            },
+
+            mostrarMangas(){
+                this.manga = true;
+                this.figura = false;
+                this.productos = false;
+                this.checkFigura = false;
+                this.autor = false;
+            },
+
+            mostrarFiguras(){
+                this.manga = false;
+                this.figura = true;
+                this.productos = false;
+                this.autor = false;
+            },
+
+            mostrarProductos(){
+                this.manga = false;
+                this.figura = false;
+            },
+
+            mostrarProductoPorAutor(){
+                this.manga = false;
+                this.figura = false;
+                this.productos = false;
+                this.checkFigura = false;
+                this.autor = true;
+                this.getAllProductosByAuthor()
             }
+
+
         }
     }
 </script>

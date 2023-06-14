@@ -1,6 +1,7 @@
 <script setup>
     import Header from './header.vue';
     import Footer from './footer.vue';
+    import { mapActions } from 'vuex';
 </script>
 
 <template>
@@ -119,18 +120,14 @@
             }
         },
         methods: {
+            ...mapActions(['login']),
             async compruebaUsuario(email, contraseña) {
                 try{
                     const response = await fetch(`http://localhost:8080/kimi/usuarios/email/${email}`);
                     this.usuario = await response.json();
-                    console.log(this.usuario);
-                    console.log(this.usuario.email);
-                    console.log(email);
-                    console.log(this.usuario.contrasenia);
-                    console.log(contraseña)
                     if(this.usuario.email == email && this.usuario.contrasenia == contraseña){
                         alert("Inicio de sesión con éxito");
-                        this.$store.commit('setUser', usuario);
+                        this.login(this.usuario);
                         this.$router.push('/');
                     }else{
                         this.errorLogin=true;

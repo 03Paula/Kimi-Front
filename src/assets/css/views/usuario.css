@@ -1,6 +1,6 @@
 .usuario{
     width: 100vw;
-    height: 91.5vh;
+    min-height: 91.5vh;
     max-height: max-content;
 }
 
