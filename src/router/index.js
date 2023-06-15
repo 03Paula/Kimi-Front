@@ -5,6 +5,7 @@ import contacto from '@/components/contacto.vue'
 import usuario from '@/components/usuario.vue'
 import producto from '@/components/producto.vue'
 import resumen from '@/components/resumenPedido.vue'
+import carrito from '@/components/cesta.vue'
 
 
 const router = createRouter({
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/resumen-pedido',
       name: 'resumen',
       component: resumen
+    },
+    {
+      path: '/carrito',
+      name: 'carrito',
+      component: carrito
     }
 
   ]

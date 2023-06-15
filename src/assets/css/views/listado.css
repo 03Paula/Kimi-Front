@@ -73,7 +73,7 @@
     cursor: pointer;
 }
 
-.coleccion-mangas, .coleccion-producto, .coleccion-figuras{
+.coleccion-mangas, .coleccion-producto, .coleccion-figuras, .coleccion-productoGenero{
    width: 100%;
    display: flex;
    display: -webkit-box;
