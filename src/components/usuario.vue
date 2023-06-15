@@ -5,13 +5,12 @@
     import Pedido from './pedido.vue';
     import Direccion from './direccion.vue';
     import Mensaje from './mensaje.vue';
-    import { mapGetters } from 'vuex';
 </script>
 
 <template>
     <Header /> 
     <body>
-        <section class="usuario">
+        <section class="usuario" id="pagUsuario">
         <section class="botones">
             <button class="btn__grande btn__datos" @click="misDatos()" >
                 Mis datos
@@ -37,26 +36,26 @@
                 <div class="lineaVertical"></div>
                 
                 <article class="datos" >
-                    <h6>Nombre: {{ usuario.nombre }}</h6>
-                    <h6>Apellidos: {{ usuario.apellidos }}</h6>
-                    <h6>Email: {{ usuario.email}}</h6>
-                    <h6>Número de teléfono: {{ usuario.telefono }}</h6>
+                    <h6>Nombre: {{ this.usuario.nombre }}</h6>
+                    <h6>Apellidos: {{ this.usuario.apellidos }}</h6>
+                    <h6>Email: {{ this.usuario.email}}</h6>
+                    <h6>Número de teléfono: {{ this.usuario.telefono }}</h6>
                 </article>
             </article>
             <dialog class="sesion__dialog" id="sesion__dialog" modal-mode="mega">
                 <h6 class="dialog__h6">¿Estás seguro que quieres cerrar sesión?</h6>
                 <footer class="footer__dialog">
                     <button class="btn__mediano btn__cancelar" type="reset" onclick="sesion__dialog.close()">Cancelar</button>
-                    <button class="btn__mediano btn__confirmar">
+                    <button class="btn__mediano btn__confirmar" @click="cerrarSesion()" onclick="sesion__dialog.close()">
                         Confirmar
                     </button>
                 </footer>
             </dialog>
             <article class="botones">
-                <button class="btn__mediano" onclick="sesion__dialog.showModal()">
+                <button class="btn__mediano btn_sesion" onclick="sesion__dialog.showModal()">
                     Cerrar Sesión
                 </button>
-                <button class="btn__mediano">
+                <button class="btn__mediano btn_sesion">
                     Editar datos
                 </button>
             </article>
@@ -70,7 +69,14 @@
 
         <section id="direcciones" class="datosUsuario"  v-if="mostrarDirecciones" >
             <h2 class="datos__titulo">Mis direcciones</h2>
-            <Direccion />
+            <div  v-for="d in this.direcciones" :key="d.id">
+                <Direccion >
+                    <template #NombreCalle>{{ d.nombre_calle }}</template>
+                    <template #Pais>{{ d.pais }}</template>
+                    <template #Ciudad>{{ d.ciudad }}</template>
+                    <template #Postal>{{ d.codigo_postal }}</template>
+                </Direccion>
+            </div>
             <dialog class="dir__dialog" id="dir__dialog" modal-mode="mega">
                 <header class="header__dialog">
                     <h5><img src="../assets/img/ubicacion.png" alt="icono de ubicación" class="header__dialog__img" />Nueva Dirección </h5>
@@ -106,9 +112,14 @@
         </section>
 
         <section id="tarjetas" class="datosUsuario" v-if="mostrarTarjetas" >
-            <h2 class="datos__titulo" >Mis tarjetas</h2>
-                <Tarjeta />
-                <p class="texto__usuario" >{{ tarjetas }}</p>
+            <h2 class="datos__titulo tarjeta__titulo" >Mis tarjetas</h2>
+            <div id="cTarjetas" class="coleccion_tarjetas" v-for="t in this.tarjetas" :key="t.id" >
+                <Tarjeta>
+                    <template #Numero >**** **** **** {{ t.n_tarjeta.slice(-4) }}</template>
+                    <template #Titular>{{ t.titular }}</template>
+                    <template #Fecha>{{ t.vencimiento }}</template>
+                </Tarjeta>
+            </div>
             <dialog class="tarjeta__dialog" id="tarjeta__dialog" modal-mode="mega">
                 <header class="header__dialog">
                     <h5><img src="../assets/img/tarjeta-bancaria.png" alt="icono tarjeta" class="header__dialog__img" />Nueva Tarjeta </h5>
@@ -123,6 +134,9 @@
                     <label for="vencimiento">Fecha de vencimiento <font color="red">*</font></label>
                     <input id="vencimiento" name="vencimiento" type="text" v-model="vencimiento" v-on:blur="vencimientoValido" placeholder="dd/mm" class="input__dialog" required/>
                     <p v-if="errorVencimiento" class="dialog__mensajesError">Escribe una fecha de vencimiento válida (dd/mm)</p>
+                    <label for="cvv">Cvv<font color="red">*</font></label>
+                    <input id="cvv" name="cvv" type="text" v-model="cvv" v-on:blur="cvvValido" placeholder="XXX" class="input__dialog" required/>
+                    <p v-if="errorCvv" class="dialog__mensajesError">Excribe un número de cvv válido (3 dígitos)</p>
                 </form>
                 <footer class="footer__dialog">
                     <button class="btn__mediano btn__cancelar" type="reset" onclick="tarjeta__dialog.close()">Cancelar</button>
@@ -202,16 +216,10 @@
     export default {
         data() {
             return {
-                usuario : {},
-                /*
-                nombre: localStorage.getItem("usuario"),
-                apellidos: localStorage.getItem("apellidos"),
-                email: localStorage.getItem("email"),
-                nombreusu: localStorage.getItem("nombreusu"),
-                nuevadireccion: false,
-                direcciones: localStorage.getItem("direccion"),
-                tarjetas: localStorage.getItem("tarjetas"),
-                */
+                idUsuario: localStorage.getItem('idUsuario'),
+                usuario: {},
+                tarjetas: {},
+                direcciones: {},
                 mostrarDatos: true,
                 mostrarPedidos:false,
                 mostrarDirecciones:false,
@@ -234,23 +242,50 @@
                 titular:"",
                 numeroTarjeta:"",
                 vencimiento:"",
+                cvv: "",
+                ultimosDigitos: '',
                 nuevatarjeta:false,
                 errorTitular: false,
                 errorTarjeta:false,
                 errorVencimiento:false,
+                errorCvv: false,
 
                 nombresReg:  new RegExp(/^[A-z]{3,}[\s]*[A-z]*[\s]*[A-z]*[\s]*[A-z]*/),
                 postalReg: new RegExp(/^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/),
                 numeroReg: new RegExp(/^\d{1,3}$/),
+                cvvReg: new RegExp(/^\d{3}$/),
                 tarjetaReg : new RegExp(/^(?:\d{15,16}|\d{4}(?:(?:\s+\d{4}){3}|\s+\d{6}\s\d{5}))$/),
                 vencimientoReg: new RegExp(/^\d{2}\/\d{2}$/)
 
             }
         },
-        computed: {
-            ...mapGetters(['UserLogged', 'usuario'])
+        mounted(){
+            this.getUser();
+            this.getCard();
+            this.getAdresses();
         },
         methods: {
+            async getUser(){
+                console.log(this.idUsuario)
+                const response = await fetch(`http://localhost:8080/kimi/usuario/${this.idUsuario}`);
+                this.usuario = await response.json();
+            },
+
+            async getCard(){
+                const response = await fetch(`http://localhost:8080/kimi/tarjetas/usuario/${this.idUsuario}`);
+                this.tarjetas = await response.json();
+            },
+
+            async getAdresses(){
+                const response = await fetch(`http://localhost:8080/kimi/direcciones/usuario/${this.idUsuario}`);
+                this.direcciones = await response.json();
+            },
+
+            cerrarSesion(){
+                localStorage.clear();
+                this.$router.push('/');
+            },
+
             misDatos(){
                 this.mostrarDatos = true;
                 this.mostrarDirecciones = false;
@@ -319,9 +354,14 @@
                 this.errorPostal = !this.postalReg.test(this.codigoPostal);
             },
 
-            direccion(){
-                if(!this.errorCiudad && !this.errorNombre && !this.errorProvincia && !this.errorPais && !this.errorPiso && !this.errorPostal){
-                    const nuevadir = this.calle + ' ' + this.nombreCalle + ' ' + this.numero + ' ' + this.piso + ' ,' + this.provincia ;
+            async direccion(){
+                if(!this.errorCiudad && !this.errorCalle && !this.errorProvincia && !this.errorPais && !this.errorPiso && !this.errorPostal){
+                    const nuevaDireccion = {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ nombre_calle: `${this.calle}`, piso: `${this.piso}` , provincia: `${this.provincia}`, pais: `${this.pais}`, codigo_postal: `${this.codigoPostal}`, ciudad: `${this.ciudad}`, usuarioId: `${this.idUsuario}`})
+                    }
+                    const result = await fetch(`http://localhost:8080/kimi/direccion`, nuevaDireccion);
                     dir__dialog.close();
                     this.mostrarMensaje= true,
                     this.$router.push('usuario');
@@ -340,21 +380,21 @@
                 this.errorVencimiento = !this.vencimientoReg.test(this.vencimiento);
             },
 
-            tarjeta(){
-                if(!this.errorTitular && !this.errorTarjeta && !this.errorVencimiento){
+            cvvValido(){
+                this.errorCvv = !this.cvvReg.test(this.cvv);
+            },
+
+            async tarjeta(){
+                if(!this.errorTitular && !this.errorTarjeta && !this.errorVencimiento && !this.errorcvv){
+                    const nuevaTarjeta = {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ cvv: `${this.cvv}`, titular: `${this.titular}` , n_tarjeta: `${this.numeroTarjeta}`, vencimiento: `${this.vencimiento}`, usuarioId: `${this.idUsuario}`})
+                    }
+                    const result = await fetch(`http://localhost:8080/kimi/tarjeta`, nuevaTarjeta);
                     tarjeta__dialog.close();
                     this.mostrarMensaje=true;
-                    let ultimosNumeros ="";
-                    this.numeroTarjeta = this.numeroTarjeta.trim()
-                    for( let i=0 ; i < this.numeroTarjeta.length ; i++){
-                        if(i >= 14){
-                            ultimosNumeros += this.numeroTarjeta[i];
-                            console.log(ultimosNumeros)
-                        }
-                    }
-                    console.log(ultimosNumeros)
-                    const credito = '**** **** **** ' + ultimosNumeros;
-                    localStorage.setItem("tarjetas", credito);
+                    
                 }
             }
 

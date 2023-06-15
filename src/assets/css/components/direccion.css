@@ -15,6 +15,11 @@
     padding: 20px;
 }
 
+.direccion__img{
+    width: 200px;
+    height: auto;
+}
+
 .direccion__acciones{
     display: flex;
     margin: 10px;

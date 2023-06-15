@@ -1,7 +1,6 @@
 .usuario{
     width: 100vw;
-    min-height: 91.5vh;
-    max-height: max-content;
+    min-height: 91.50vh;
 }
 
 .botones{
@@ -11,11 +10,6 @@
     margin: auto;
     margin-top: 40px;
     gap: 60px;
-}
-
-.datosUsuario{
-    width: 100vw;
-    height: 91.5vh;
 }
 
 .avatar{
@@ -101,4 +95,8 @@ dialog:not([open]) {
 
 .dialog__mensajesError{
     margin-left: 20%;
+}
+
+.btn__tarjeta, .btn__direccion, .btn_sesion{
+    margin-bottom: 40px;
 }

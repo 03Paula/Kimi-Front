@@ -4,6 +4,7 @@ import listado from '@/components/index.vue'
 import contacto from '@/components/contacto.vue'
 import usuario from '@/components/usuario.vue'
 import producto from '@/components/producto.vue'
+import resumen from '@/components/resumenPedido.vue'
 
 
 const router = createRouter({
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/producto/:id',
       name: 'detalle-producto',
       component: producto
+    },
+    {
+      path: '/resumen-pedido',
+      name: 'resumen',
+      component: resumen
     }
 
   ]

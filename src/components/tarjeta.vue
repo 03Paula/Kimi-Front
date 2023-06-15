@@ -7,14 +7,14 @@ import mensaje from './mensaje.vue';
       <article class="tarjeta__frontal tarjeta__figura">
         <img class="tarjeta__chip" src="../assets/img/chip.png" alt="chip de la tarjeta de crédito" />
         <img class="tarjeta__logo" src="../assets/img/logoTienda2.png" alt="Logo de la página" />
-        <p class="tarjeta__numero">**** **** **** 6258</p>
+        <p class="tarjeta__numero"><slot name="Numero"></slot></p>
         <article class="card__space-75">
           <span class="tarjeta__texto">Titular</span>
-          <p class="tarjeta__info">Pepe</p>
+          <p class="tarjeta__info"><slot name="Titular"></slot></p>
         </article>
           <article class="card__space-25">
             <span class="tarjeta__texto">Fecha</span>
-            <p class="tarjeta__info">10/25</p>
+            <p class="tarjeta__info"><slot name="Fecha"></slot></p>
           </article>
         </article>
         <dialog class="eliminar__dialog" id="eliminar__dialog" modal-mode="mega">

@@ -46,7 +46,6 @@ import Header from './header.vue'
         },
         mounted(){
             this.getInfoProducto(this.$route.params.id);
-            console.log(this.$route.params.id)
         },
         methods: {
            async getInfoProducto(productoId){

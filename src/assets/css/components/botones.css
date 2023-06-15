@@ -30,6 +30,7 @@ button:hover{
 
 .btn__datos{
     width: 200px;
+    height: 80px;
     padding: 20px;
     background-color: var(--color-boton2);
     color: var(--color-texto);

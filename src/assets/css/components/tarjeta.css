@@ -1,12 +1,13 @@
 .tarjeta{
-    width: 40%;
-    height: 40%;
+    width: 375px;
+    height: 270px;
     display: flex;
-    flex-direction:column;
+    flex-direction:row;
     align-items: center;
     justify-content:space-evenly;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin: auto;
+    margin-bottom: 40px;
       -webkit-perspective: 600px;
       -moz-perspective: 600px;
       perspective:600px;
@@ -18,7 +19,6 @@
       width: 320px;
       height: 190px;
       box-shadow: 1px 1px #aaa3a3;
-        top: 0;
       position: absolute;
       left: 27px;
       top:20px;
@@ -93,8 +93,14 @@
     
 .tarjeta__acciones{
   display: flex;
+  justify-content: flex-end;
+  align-items: end;
   text-decoration:underline;
-  height: fit-content;
   position: relative;
-  top: 40%;
+  top: 35%;
+}
+
+.separador{
+  position: relative;
+  top: 10px;
 }

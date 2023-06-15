@@ -18,12 +18,18 @@
             <article id="login" class="login__form" v-if="mostrarLogin">
                 <form v-on:submit.prevent="compruebaUsuario(email, contraseña)" action="#" method="post" id="login__form">
                     <label for="email" >Correo Electrónico</label>
-                    <input type="text" name="emial" id="email" v-model="email" required />
+                    <input type="text" name="email" id="email" v-model="email" required />
                     <label for="contraseña" >Contraseña</label>
                     <input type="password" name="contraseña" id="contraseña" v-model="contraseña" required />
                     <p v-if="errorLogin" class="errorLogin">El nombre de usuario o contraseña no son correctos.</p>
                 <button class="btn__mediano btn__login">Iniciar sesión</button>
-        </form>
+            </form>
+            <dialog class="login__dialog" id="login__dialog" v-if="logueado" modal-mode="mega">
+                <h6 class="dialog__h6">¿Estás seguro que quieres cerrar sesión?</h6>
+                <footer class="footer__dialog">
+                    <button class="btn__mediano btn__confirmar" type="reset" onclick="login__dialog.close()">Cerrar</button>
+                </footer>
+            </dialog>
         </article>
 
         <article id="registro" class="registro__form" v-if="mostrarRegistro">
@@ -110,6 +116,7 @@
                 errorTelefono:false,
                 errorContraseña:false,
                 coincide:false,
+                logueado: false,
 
                 nombreReg: new RegExp(/^[A-z]{3,}[\s]*[A-z]*/),
                 emailReg: new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/),
@@ -127,7 +134,8 @@
                     this.usuario = await response.json();
                     if(this.usuario.email == email && this.usuario.contrasenia == contraseña){
                         alert("Inicio de sesión con éxito");
-                        this.login(this.usuario);
+                        this.logueado = true;
+                        localStorage.setItem("idUsuario", this.usuario.id)
                         this.$router.push('/');
                     }else{
                         this.errorLogin=true;

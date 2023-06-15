@@ -5,7 +5,7 @@ import mensaje from './mensaje.vue';
 
 <template>
     <section class="direccion">
-        <img alt="imagen de un mapa" src="" class="direccion__img" />
+        <img alt="imagen de un mapa" src="../assets/img/mapa.png" class="direccion__img" />
         <article class="direccion__acciones">
             <p class="accion">Editar</p>
             <hr class="separador" />
@@ -21,10 +21,10 @@ import mensaje from './mensaje.vue';
                 </footer>
         </dialog>
         <article class="direccion__datos" >
-            <p>Nombre de la Calle</p>
-            <p>Pais</p>
-            <p>Ciudad</p>
-            <p>Código Postal</p>
+            <p><slot name="NombreCalle"></slot></p>
+            <p><slot name="Pais"></slot></p>
+            <p><slot name="Ciudad"></slot></p>
+            <p><slot name="Postal"></slot></p>
         </article>
     </section>
 
