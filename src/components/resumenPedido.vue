@@ -26,6 +26,20 @@
 </template>
 
 <script>
+/**
+ * @file resumenPedido.vue - Componente para el resumen del pedido.
+ * @uthor Paula Flor
+ * 
+ * @vue-data {String} idUsuario - Almacena la id del usuario.
+ * @vue-data {Object} tarjetas - Almacena las tarjetas para su elección.
+ * @vue-data {Integer} direcciones - Almacena las direcciones para su elección.
+ * @vue-data {Boolean} pedidoRealizado - Almacena si se ha realizado un pedido o no.
+ * 
+ * @vue-event getCard - Obtiene todas las tarjetas.
+ * @vue-event getAddresses - Obtiene todas las direcciones.
+ * @vue-event guardarPedido - Muestra el mensaje y vuelve a la página del listado.
+ * */
+
 export default {
         data() {
             return {
@@ -36,7 +50,7 @@ export default {
             }
         },
         mounted(){
-            this.getAdresses(),
+            this.getAddresses(),
             this.getCard()
         },
         methods: {
@@ -45,7 +59,7 @@ export default {
                 this.tarjetas = await response.json();
             },
 
-            async getAdresses(){
+            async getAddresses(){
                 const response = await fetch(`http://localhost:8080/kimi/direcciones/usuario/${this.idUsuario}`);
                 this.direcciones = await response.json();
             },

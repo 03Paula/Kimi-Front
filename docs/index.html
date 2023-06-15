@@ -122,7 +122,12 @@
         <td><code>comentariosReg</code></td>
         <td>String</td>
         <td>-</td>
-        <td>Expresión regular para validar el comenatrio.</td>
+        <td>Expresión regular para validar el comentario.</td>
+    </tr><tr>
+        <td><code>mostrarmensaje</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Mostrará el mensaje si es verdadero.</td>
     </tr></tbody>
 </table>
 
@@ -155,7 +160,148 @@
     </tr><tr>
         <td><code>contactar</code></td>
         <td></td>
-        <td>Si no hay errores se redirige a la página del listado.</td>
+        <td>Si no hay errores se redirige a la página del listado al cabo de 3 segundos.</td>
+    </tr></tbody>
+</table>
+
+
+<div class="container-overview"><div><p> 
+</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Paula Flor.</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>components/direccion.vue</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">direccion.vue</p></div></div> 
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-data">Data</h3>
+<table data-jsdoc-vuejs="table-data">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>mostrar</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Mostrará el mensaje si es verdadero.</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-event">Events</h3>
+<table data-jsdoc-vuejs="table-event">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Payload Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>MostrarMensaje</code></td>
+        <td></td>
+        <td>Convierte el valor de mostrar a verdadero.</td>
     </tr></tbody>
 </table>
 
@@ -256,7 +402,52 @@
     <div class="container-overview">
     
         
-            <div class="description">header.vue</div>
+            <div class="description">header.vue - Componente para el header.</p></div></div> 
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-data">Data</h3>
+<table data-jsdoc-vuejs="table-data">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>buscar</code></td>
+        <td>String</td>
+        <td>-</td>
+        <td>Almacenará la busqueda.</td>
+    </tr><tr>
+        <td><code>producto</code></td>
+        <td>Object</td>
+        <td>-</td>
+        <td>Almacenará el producto.</td>
+    </tr><tr>
+        <td><code>usuario</code></td>
+        <td>String</td>
+        <td>-</td>
+        <td>Almacenará el usuario si se encuentra.</td>
+    </tr><tr>
+        <td><code>sesion</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Almacenará si se ha iniciado sesión o no.</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
         
 
         
@@ -295,11 +486,6 @@
 
     
 
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="header.vue.html">header.vue</a>, <a href="header.vue.html#line2">line 2</a>
-    </li></ul></dd>
     
 
     
@@ -372,10 +558,65 @@
     </tr>
     </thead>
     <tbody><tr>
+        <td><code>productos</code></td>
+        <td>Object</td>
+        <td>-</td>
+        <td>Almacena todos los productos.</td>
+    </tr><tr>
         <td><code>mangas</code></td>
         <td>Object</td>
         <td>-</td>
         <td>Almacena todos los mangas.</td>
+    </tr><tr>
+        <td><code>figuras</code></td>
+        <td>Object</td>
+        <td>-</td>
+        <td>Almacena todos las figuras.</td>
+    </tr><tr>
+        <td><code>productosAutor</code></td>
+        <td>Object</td>
+        <td>-</td>
+        <td>Almacena todos los productos que tenga ese autor.</td>
+    </tr><tr>
+        <td><code>productosGenero</code></td>
+        <td>Object</td>
+        <td>-</td>
+        <td>Almacena todos los productos que tengan ese género.</td>
+    </tr><tr>
+        <td><code>figuras</code></td>
+        <td>Object</td>
+        <td>-</td>
+        <td>Almacena todos las figuras.</td>
+    </tr><tr>
+        <td><code>manga</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Almacena si se ha elegido la opción de filtrado de solo mangas.</td>
+    </tr><tr>
+        <td><code>figura</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Almacena si se ha elegido la opción de filtrado de solo figuras.</td>
+    </tr><tr>
+        <td><code>producto</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Almacena si se ha elegido la opción de filtrado de solo productos, está por defecto.</td>
+    </tr><tr>
+        <td><code>autor</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Almacena si se ha elegido la opción de filtrado por autor.</td>
+    </tr><tr>
+        <td><code>genero</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Almacena si se ha elegido la opción de filtrado por genero.</td>
+    </tr><tr>
+        <td><code>opcionSelecionada</code></td>
+        <td>String</td>
+        <td>-</td>
+        <td>Almacena el valor de la opción escogida.</td>
     </tr></tbody>
 </table>
 
@@ -398,9 +639,25 @@
         <td>Object</td>
         <td>Obtiene todos los mangas.</td>
     </tr><tr>
-        <td><code>getOneManga</code></td>
+        <td><code>getAllFiguras</code></td>
         <td>Object</td>
-        <td>Obtiene el manga pedido.</td>
+        <td>Obtiene todas las figuras.</td>
+    </tr><tr>
+        <td><code>getAllProductos</code></td>
+        <td>Object</td>
+        <td>Obtiene todos los productos.</td>
+    </tr><tr>
+        <td><code>getAllProductosByAuthor</code></td>
+        <td>Object</td>
+        <td>Obtiene los productos que contienen ese autor.</td>
+    </tr><tr>
+        <td><code>getAllProductosByGenre</code></td>
+        <td>Object</td>
+        <td>Obtiene los productos que contienen ese género.</td>
+    </tr><tr>
+        <td><code>verDetalles</code></td>
+        <td></td>
+        <td>Redirige a la página de más detalle de ese producto.</td>
     </tr></tbody>
 </table>
 
@@ -501,7 +758,7 @@
     <div class="container-overview">
     
         
-            <div class="description">Login.vue</p></div></div> 
+            <div class="description">Login.vue - Componente para el inicio de sesión y registro.</p></div></div> 
 
 
 
@@ -582,7 +839,7 @@
         <td>-</td>
         <td>Muestra el mensaje de error si es true.</td>
     </tr><tr>
-        <td><code>errorNombreusu</code></td>
+        <td><code>errorTelefono</code></td>
         <td>Boolean</td>
         <td>-</td>
         <td>Muestra el mensaje de error si es true.</td>
@@ -607,10 +864,10 @@
         <td>-</td>
         <td>Expresión regular que valida el email.</td>
     </tr><tr>
-        <td><code>nombreusuReg</code></td>
+        <td><code>telefonoReg</code></td>
         <td>String</td>
         <td>-</td>
-        <td>Expresión regular para validar el nombre de usuario.</td>
+        <td>Expresión regular para validar el teléfono.</td>
     </tr><tr>
         <td><code>contraseniaReg</code></td>
         <td>String</td>
@@ -646,9 +903,9 @@
         <td></td>
         <td>Valida el email con la expresión regular correspondiente.</td>
     </tr><tr>
-        <td><code>validarNombreusu</code></td>
+        <td><code>validarTelefono</code></td>
         <td></td>
-        <td>Valida el nombre de usuario con la expresión regular correspondiente.</td>
+        <td>Valida el teléfono con la expresión regular correspondiente.</td>
     </tr><tr>
         <td><code>validarContraseña</code></td>
         <td></td>
@@ -699,6 +956,458 @@
     <dd class="tag-author">
         <ul>
             <li>Paula Flor</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>components/producto.vue</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">producto.vue</p></div></div> 
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-data">Data</h3>
+<table data-jsdoc-vuejs="table-data">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>Integer</code></td>
+        <td></td>
+        <td>-</td>
+        <td>cantidad - Almacena la cantidad de producto.</td>
+    </tr><tr>
+        <td><code>Object</code></td>
+        <td></td>
+        <td>-</td>
+        <td>producto - Almacena la información del producto.</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-event">Events</h3>
+<table data-jsdoc-vuejs="table-event">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Payload Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>getInfoProducto</code></td>
+        <td></td>
+        <td>Obtiene la información del producto.</td>
+    </tr><tr>
+        <td><code>cantidadMas</code></td>
+        <td></td>
+        <td>Añade un valor más al que ya tenía cantidad.</td>
+    </tr><tr>
+        <td><code>cantidadMenos</code></td>
+        <td></td>
+        <td>quita un valor menos a cantidad.</td>
+    </tr></tbody>
+</table>
+
+
+<div class="container-overview"><div><p> 
+</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Paula Flor</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>components/resumenPedido.vue</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">resumenPedido.vue - Componente para el resumen del pedido.</p></div></div> 
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-data">Data</h3>
+<table data-jsdoc-vuejs="table-data">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>idUsuario</code></td>
+        <td>String</td>
+        <td>-</td>
+        <td>Almacena la id del usuario.</td>
+    </tr><tr>
+        <td><code>tarjetas</code></td>
+        <td>Object</td>
+        <td>-</td>
+        <td>Almacena las tarjetas para su elección.</td>
+    </tr><tr>
+        <td><code>direcciones</code></td>
+        <td>Integer</td>
+        <td>-</td>
+        <td>Almacena las direcciones para su elección.</td>
+    </tr><tr>
+        <td><code>pedidoRealizado</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Almacena si se ha realizado un pedido o no.</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-event">Events</h3>
+<table data-jsdoc-vuejs="table-event">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Payload Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>getCard</code></td>
+        <td></td>
+        <td>Obtiene todas las tarjetas.</td>
+    </tr><tr>
+        <td><code>getAddresses</code></td>
+        <td></td>
+        <td>Obtiene todas las direcciones.</td>
+    </tr><tr>
+        <td><code>guardarPedido</code></td>
+        <td></td>
+        <td>Muestra el mensaje y vuelve a la página del listado.</td>
+    </tr></tbody>
+</table>
+
+
+<div class="container-overview"><div><p> 
+</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>components/tarjeta.vue</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">tarjeta.vue</p></div></div> 
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-data">Data</h3>
+<table data-jsdoc-vuejs="table-data">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>mostrar</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Mostrará el mensaje si es verdadero.</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-event">Events</h3>
+<table data-jsdoc-vuejs="table-event">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Payload Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>MostrarMensaje</code></td>
+        <td></td>
+        <td>Convierte el valor de mostrar a verdadero.</td>
+    </tr></tbody>
+</table>
+
+
+<div class="container-overview"><div><p> 
+</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Paula Flor.</li>
         </ul>
     </dd>
     
@@ -841,11 +1550,6 @@
         <td>-</td>
         <td>Almacena la calle.</td>
     </tr><tr>
-        <td><code>nombreCalle</code></td>
-        <td>String</td>
-        <td>-</td>
-        <td>Almacena el nombre de la calle.</td>
-    </tr><tr>
         <td><code>numero</code></td>
         <td>Int</td>
         <td>-</td>
@@ -867,11 +1571,6 @@
         <td>Almacena el código postal.</td>
     </tr><tr>
         <td><code>errorCalle</code></td>
-        <td>Boolean</td>
-        <td>-</td>
-        <td>Si es verdadero muestra el mensaje de error.</td>
-    </tr><tr>
-        <td><code>errorNombre</code></td>
         <td>Boolean</td>
         <td>-</td>
         <td>Si es verdadero muestra el mensaje de error.</td>
@@ -911,6 +1610,11 @@
         <td>-</td>
         <td>Almacena la fecha de vencimiento de la tarjeta.</td>
     </tr><tr>
+        <td><code>cvv</code></td>
+        <td>String</td>
+        <td>-</td>
+        <td>Almacena el cvv de la tarjeta.</td>
+    </tr><tr>
         <td><code>nuevaTarjeta</code></td>
         <td>Boolean</td>
         <td>-</td>
@@ -927,6 +1631,11 @@
         <td>Si es true aparece el mensaje de error.</td>
     </tr><tr>
         <td><code>errorVencimiento</code></td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>Si es true aparece el mensaje de error.</td>
+    </tr><tr>
+        <td><code>errorCvv</code></td>
         <td>Boolean</td>
         <td>-</td>
         <td>Si es true aparece el mensaje de error.</td>
@@ -1001,10 +1710,6 @@
         <td></td>
         <td>Valida la expresion regular con el valor de calle.</td>
     </tr><tr>
-        <td><code>nombreValida</code></td>
-        <td></td>
-        <td>Valida la expresion regular con el valor del nombre de la calle.</td>
-    </tr><tr>
         <td><code>numeroValida</code></td>
         <td></td>
         <td>Valida la expresion regular con el valor del número.</td>
@@ -1023,7 +1728,7 @@
     </tr><tr>
         <td><code>direccion</code></td>
         <td></td>
-        <td>Si no hay fallos almacena el valor de la direccion en el localStorage.</td>
+        <td>Si no hay fallos almacena el valor de la direccion en la base de datos.</td>
     </tr><tr>
         <td><code>titularValido</code></td>
         <td></td>
@@ -1039,7 +1744,7 @@
     </tr><tr>
         <td><code>tarjeta</code></td>
         <td></td>
-        <td>Si no hay errores se almacena la tarjeta en el localStorage.</td>
+        <td>Si no hay errores se almacena la tarjeta en la base de datos.</td>
     </tr></tbody>
 </table>
 
@@ -1126,7 +1831,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Jun 15 2023 10:57:08 GMT+0200 (hora de verano de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jun 16 2023 00:46:58 GMT+0200 (hora de verano de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>

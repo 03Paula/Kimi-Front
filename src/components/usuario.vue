@@ -170,13 +170,11 @@
  * @vue-data {Boolean} mostrarDirecciones - Muestra la información de las direcciones.
  * @vue-data {Boolean} mostrarTarjetas - Muestra la información relativa a las tarjetas del usuario.
  * @vue-data {String} calle - Almacena la calle.
- * @vue-data {String} nombreCalle - Almacena el nombre de la calle.
  * @vue-data {Int} numero - Almacena el número de la casa.
  * @vue-data {Int} piso - Almacena el número del piso.
  * @vue-data {String} provincia - Almacena la provincia.
  * @vue-data {Int} codigoPostal - Almacena el código postal.
  * @vue-data {Boolean} errorCalle - Si es verdadero muestra el mensaje de error.
- * @vue-data {Boolean} errorNombre - Si es verdadero muestra el mensaje de error.
  * @vue-data {Boolean} errorNumero - Si es verdadero muestra el mensaje de error.
  * @vue-data {Boolean} errorPiso - Si es verdadero muestra el mensaje de error.
  * @vue-data {Boolean} errorProvincia- Si es verdadero muestra el mensaje de error.
@@ -184,10 +182,12 @@
  * @vue-data {String} titular - Almacena el titular de la tarjeta.
  * @vue-data {String} numeroTarjeta - Almacena el número de la tarjeta.
  * @vue-data {String} vencimiento - Almacena la fecha de vencimiento de la tarjeta.
+ *  @vue-data {String} cvv - Almacena el cvv de la tarjeta.
  * @vue-data {Boolean} nuevaTarjeta - Muestra el formulario para añadir una nueva tarjeta.
  * @vue-data {Boolean} errorTitular - Si es true aparece el mensaje de error.
  * @vue-data {Boolean} errorTarjeta - Si es true aparece el mensaje de error.
  * @vue-data {Boolean} errorVencimiento - Si es true aparece el mensaje de error.
+ * @vue-data {Boolean} errorCvv - Si es true aparece el mensaje de error.
  * @vue-data {String} nombresReg - Expresión regular para validar el texto.
  * @vue-data {String} numeroReg - Expresión regular para validar el numero de calle y piso.
  * @vue-data {String} postalReg - Expresión regular para validar el código postal.
@@ -201,17 +201,16 @@
  * @vue-event misTarjetar - Permite que solo se muestren los datos de las tarjetas.
  * @vue-event calleValida - Valida la expresion regular con el valor de calle.
  * @vue-event calleValida - Valida la expresion regular con el valor de calle.
- * @vue-event nombreValida - Valida la expresion regular con el valor del nombre de la calle.
  * @vue-event numeroValida - Valida la expresion regular con el valor del número.
  * @vue-event pisoValida - Valida la expresion regular con el valor del piso.
  * @vue-event provinciaValida - Valida la expresion regular con el valor de la provincia.
  * @vue-event codigoValido - Valida la expresion regular con el valor del código postal.
  * 
- * @vue-event direccion - Si no hay fallos almacena el valor de la direccion en el localStorage.
+ * @vue-event direccion - Si no hay fallos almacena el valor de la direccion en la base de datos.
  * @vue-event titularValido - Valida la expresión regular con el valor del titular.
  * @vue-event tarjetaValida - Valida la expresión regular con el valor del número de la tarjeta.
  * @vue-event vencimientoValido - Valida la expresión regular con el valor del vencimiento.
- * @vue-event tarjeta - Si no hay errores se almacena la tarjeta en el localStorage.
+ * @vue-event tarjeta - Si no hay errores se almacena la tarjeta en la base de datos.
  */
     export default {
         data() {
@@ -243,7 +242,6 @@
                 numeroTarjeta:"",
                 vencimiento:"",
                 cvv: "",
-                ultimosDigitos: '',
                 nuevatarjeta:false,
                 errorTitular: false,
                 errorTarjeta:false,
@@ -262,7 +260,7 @@
         mounted(){
             this.getUser();
             this.getCard();
-            this.getAdresses();
+            this.getAddresses();
         },
         methods: {
             async getUser(){
@@ -276,7 +274,7 @@
                 this.tarjetas = await response.json();
             },
 
-            async getAdresses(){
+            async getAddresses(){
                 const response = await fetch(`http://localhost:8080/kimi/direcciones/usuario/${this.idUsuario}`);
                 this.direcciones = await response.json();
             },

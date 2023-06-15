@@ -112,10 +112,25 @@
  * @file index.vue - Componente para la página de listado.
  * @author Paula Flor
  * 
+ * @vue-data {Object} productos - Almacena todos los productos.
  * @vue-data {Object} mangas - Almacena todos los mangas.
+ * @vue-data {Object} figuras - Almacena todos las figuras.
+ * @vue-data {Object} productosAutor - Almacena todos los productos que tenga ese autor.
+ * @vue-data {Object} productosGenero - Almacena todos los productos que tengan ese género.
+ * @vue-data {Object} figuras - Almacena todos las figuras.
+ * @vue-data {Boolean} manga - Almacena si se ha elegido la opción de filtrado de solo mangas.
+ * @vue-data {Boolean} figura - Almacena si se ha elegido la opción de filtrado de solo figuras.
+ * @vue-data {Boolean} producto - Almacena si se ha elegido la opción de filtrado de solo productos, está por defecto.
+ * @vue-data {Boolean} autor - Almacena si se ha elegido la opción de filtrado por autor.
+ * @vue-data {Boolean} genero - Almacena si se ha elegido la opción de filtrado por genero.
+ * @vue-data {String} opcionSelecionada - Almacena el valor de la opción escogida.
  * 
  * @vue-event {Object} getAllMangas - Obtiene todos los mangas.
- * @vue-event {Object} getOneManga - Obtiene el manga pedido.
+ * @vue-event {Object} getAllFiguras - Obtiene todas las figuras.
+ * @vue-event {Object} getAllProductos - Obtiene todos los productos.
+ * @vue-event {Object} getAllProductosByAuthor - Obtiene los productos que contienen ese autor.
+ * @vue-event {Object} getAllProductosByGenre - Obtiene los productos que contienen ese género.
+ * @vue-event verDetalles - Redirige a la página de más detalle de ese producto.
  * 
  */
 
@@ -127,11 +142,9 @@
                 figuras: {},
                 productosAutor: {},
                 productosGenero: {},	
-                busqueda:"",
                 manga: false,
                 figura: false,
                 producto: true,
-                checkFigura : true,
                 autor:false,
                 genero:false,
                 opcionSelecionada: '',
@@ -185,7 +198,6 @@
                 this.manga = true;
                 this.figura = false;
                 this.productos = false;
-                this.checkFigura = false;
                 this.autor = false;
                 this.genero = false
             },
@@ -208,7 +220,6 @@
                 this.manga = false;
                 this.figura = false;
                 this.productos = false;
-                this.checkFigura = false;
                 this.autor = true;
                 this.genero = false
                 this.getAllProductosByAuthor()
@@ -218,7 +229,6 @@
                 this.manga = false;
                 this.figura = false;
                 this.productos = false;
-                this.checkFigura = false;
                 this.autor = false;
                 this.genero = true;
                 this.getAllProductosByGenre()

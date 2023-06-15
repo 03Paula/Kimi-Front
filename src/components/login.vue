@@ -1,7 +1,6 @@
 <script setup>
     import Header from './header.vue';
     import Footer from './footer.vue';
-    import { mapActions } from 'vuex';
 </script>
 
 <template>
@@ -45,7 +44,7 @@
                 <p v-if="errorEmail" class="errorRegistro" >El email no es válido.</p>
                 <label for="telefono">Teléfono</label>
                 <input type="text" name="telefono" id="telefono" v-model="telefono" v-on:blur="validarTelefono" required/>
-                <p v-if="errorEmail" class="errorRegistro" >El número de teléfono no es válido.</p>
+                <p v-if="errorTelefono" class="errorRegistro" >El número de teléfono no es válido.</p>
                 <label for="contraseniaRegistro">Contraseña</label>
                 <input type="password" name="contraseniaRegistro" id="contraseniaRegistro" v-model="contraseniaRegistro" v-on:blur="validarContraseña" required/>
                 <p v-if="errorContraseña" class="errorRegistro" >La contraseña debe de tener minimo 1 mayúscula,1 minúscula, 1 número y tener entre 8 y 16 letras.</p>
@@ -64,7 +63,7 @@
 
 <script>
 /**
- * @file Login.vue
+ * @file Login.vue - Componente para el inicio de sesión y registro.
  * @author Paula Flor
  * 
  * @vue-data [Object] usuario - Almacena la información del usuario.
@@ -80,18 +79,18 @@
  * @vue-data {Boolean} errorNombre - Muestra el mensaje de error si es true.
  * @vue-data {Boolean} errorApellidos - Muestra el mensaje de error si es true.
  * @vue-data {Boolean} errorEmail - Muestra el mensaje de error si es true.
- * @vue-data {Boolean} errorNombreusu - Muestra el mensaje de error si es true.
+ * @vue-data {Boolean} errorTelefono - Muestra el mensaje de error si es true.
  * @vue-data {Boolean} errorContrasema - Muestra el mensaje de error si es true.
  * @vue-data {Boolean} coincide - Muestra el mensaje de error la contraseña no coincide con laa repContraseña.
  * @vue-data {String} nombreReg - Expresión regular para validar el nombre.
  * @vue-data {String} emailReg - Expresión regular que valida el email.
- * @vue-data {String} nombreusuReg - Expresión regular para validar el nombre de usuario.
+ * @vue-data {String} telefonoReg - Expresión regular para validar el teléfono.
  * @vue-data {String} contraseniaReg - Expreción regular para validar la contraseña.
  * 
  * @vue-event validarNombre - Valida el nombre con la expresión regular correspondiente.
  * @vue-event validarApellidos- Valida los apellidos con la expresión regular correspondiente.
  * @vue-event validarEmail - Valida el email con la expresión regular correspondiente.
- * @vue-event validarNombreusu - Valida el nombre de usuario con la expresión regular correspondiente.
+ * @vue-event validarTelefono - Valida el teléfono con la expresión regular correspondiente.
  * @vue-event validarContraseña - Valida la contraseña con la expresión regular correspondiente.
  * @vue-event coincideContraseña - Valida si la contraseña es igual a repContraseña.
  * @vue-event registrar - Si no hay fallos se almacenan los datos en el localStorage y se redirige al listado.
@@ -121,13 +120,12 @@
                 nombreReg: new RegExp(/^[A-z]{3,}[\s]*[A-z]*/),
                 emailReg: new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/),
                 contraseniaReg: new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/),
-                telefonoReg: new RegExp(),
+                telefonoReg: new RegExp(/(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}$/),
                 mostrarLogin: true,
                 mostrarRegistro: false,
             }
         },
         methods: {
-            ...mapActions(['login']),
             async compruebaUsuario(email, contraseña) {
                 try{
                     const response = await fetch(`http://localhost:8080/kimi/usuarios/email/${email}`);

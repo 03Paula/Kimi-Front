@@ -15,8 +15,13 @@
 
 <script>
 /**
- * @file header.vue
+ * @file header.vue - Componente para el header.
  * @author Paula Flor
+ * 
+ * @vue-data {String} buscar - Almacenará la busqueda.
+ * @vue-data {Object} producto - Almacenará el producto.
+ * @vue-data {String} usuario - Almacenará el usuario si se encuentra.
+ * @vue-data {Boolean} sesion - Almacenará si se ha iniciado sesión o no.
  * 
  **/
     export default {

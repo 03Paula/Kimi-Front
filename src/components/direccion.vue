@@ -34,6 +34,14 @@ import mensaje from './mensaje.vue';
 </template>
 
 <script>
+/**
+ * @file direccion.vue
+ * @author Paula Flor.
+ * 
+ * @vue-data {Boolean} mostrar - Mostrará el mensaje si es verdadero.
+ * @vue-event MostrarMensaje - Convierte el valor de mostrar a verdadero.
+ * */
+
 export default {
   data(){
     return {

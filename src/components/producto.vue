@@ -37,6 +37,17 @@ import Header from './header.vue'
 </template>
 
 <script>
+/**
+ * @file producto.vue
+ * @author Paula Flor
+ * 
+ * @vue-data [Integer] cantidad - Almacena la cantidad de producto.
+ * @vue-data [Object] producto - Almacena la información del producto.
+ * 
+ * @vue-event getInfoProducto - Obtiene la información del producto.
+ * @vue-event cantidadMas - Añade un valor más al que ya tenía cantidad.
+ * @vue-event cantidadMenos - quita un valor menos a cantidad.
+ * */
     export default {
         data(){
             return{

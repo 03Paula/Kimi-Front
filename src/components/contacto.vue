@@ -1,5 +1,6 @@
 <script setup>
     import Header from './header.vue';
+    import mensaje from './mensaje.vue';
 </script>
 
 
@@ -43,6 +44,9 @@
                     <button class="btn__pequenio btn__enviarComentario">Enviar</button>
                 </form>
             </article>
+            <mensaje v-if="mostrarMensaje">
+                <template #mensaje>Tu comentario se ha enviado.Redirigiendo...</template>
+            </mensaje>
         </section>
     </body>
 </template>
@@ -60,12 +64,13 @@
  * @vue-data {String} errorComentario - Muestra el mensaje de error si es true.
  * @vue-data {String} nombreReg - Expresión regular para validar el nombre completo.
  * @vue-data {String} emailReg - Expresión regular para validar el email.
- * @vue-data {String} comentariosReg - Expresión regular para validar el comenatrio.
+ * @vue-data {String} comentariosReg - Expresión regular para validar el comentario.
+ * @vue-data {Boolean} mostrarmensaje - Mostrará el mensaje si es verdadero.
  * 
  * @vue-event validarNombre - Valida el nombre con la expresión regular correspondiente.
  * @vue-event validarEmail - Valida el email con la expresión regular correspondiente.
  * @vue-event validarComentarios - Valida los comentarios con la expresión regular correspondiente.
- * @vue-event contactar - Si no hay errores se redirige a la página del listado.
+ * @vue-event contactar - Si no hay errores se redirige a la página del listado al cabo de 3 segundos.
  */
 
     export default {
@@ -77,6 +82,7 @@
                 errorNombre: false,
                 errorEmail: false,
                 errorComentario:false,
+                mostrarMensaje:false,
 
                 nombreReg: new RegExp(/^[A-z]{3,}[\s]*[A-z]*/),
                 emailReg: new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/),
@@ -98,8 +104,10 @@
 
             contactar(){
                 if(!this.errorNombre && !this.errorEmail && !this.errorComentario){
-                    alert("Comentarios enviados");
-                    this.$router.push('/');
+                    this.mostrarMensaje = true
+                    setTimeout(() => {
+                        this.$router.push('/')
+                    }, 2000)
                 }
             }
         }
