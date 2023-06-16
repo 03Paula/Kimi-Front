@@ -26,11 +26,7 @@ import mensaje from './mensaje.vue';
             </button>
           </footer>
         </dialog>
-        <article class="tarjeta__acciones">
-          <p class="accion" @click="">Editar</p>
-          <hr class="separador" />
-          <p class="accion" onclick="eliminar__dialog.showModal()">Descartar</p>
-        </article>
+
     </section>
 
     <mensaje v-if="mostrar">

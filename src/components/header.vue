@@ -1,10 +1,6 @@
 <template>
     <header class="header">
         <RouterLink to="/"><img alt="Logo de la tienda" src="../assets/img/logoTienda1.png" class="header__logo"/> </RouterLink>
-        <article class="header__barraBusqueda">
-            <input class="header__inputBusqueda" type="text" placeholder="Buscar en kimi" v-model="buscar" />
-            <button class="header__busqueda"><img alt="icono de una lupa" src="../assets/img/lupa.png"/></button>
-        </article>
         <article class="nav-bar">
             <RouterLink to="/usuario" class="link__usuario" style="text-decoration: none; color: inherit;"><img alt="icono de usuario" src="../assets/img/userIcon.png" class="iconos_header" v-if="sesion" /><p class="p_header" v-if="sesion">Usuario</p></RouterLink>
             <RouterLink to="/login" class="link__usuario" style="text-decoration: none; color: inherit;"><img alt="icono de usuario" src="../assets/img/userIcon.png" class="iconos_header" v-if="!sesion" /><p class="p_header" v-if="!sesion">Usuario</p></RouterLink>

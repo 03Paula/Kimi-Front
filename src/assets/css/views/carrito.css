@@ -1,0 +1,12 @@
+.carrito,.resumenPedido{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+}
+
+.imagen__resumen{
+    margin: 0px;
+}
+

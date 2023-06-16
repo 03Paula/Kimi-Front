@@ -7,17 +7,20 @@
 <template>
     <Header />
     <section class="resumenPedido">
-        <h6 class="resumenPedido__h6">Productos</h6>
-        <h6 class="resumenPedido__h6">Total: </h6>
-        <label for="tarjetas">Elija la tarjeta con la que desea realizar el pago: </label>
+        <h6>Productos</h6>
+        <img class="producto__imagen imagen__resumen" :src="`${productos.imagen}`" alt="imagen del producto" />
+        <h6>Nombre : {{ productos.nombre }}</h6>
+        <h6>Cantidad : {{ carrito.cantidad }}</h6>
+        <h6 class="resumenPedido__h6">Total: {{ this.carrito.precioTotal }} €</h6>
+        <label for="tarjetas" class="label__resumen">Elija la tarjeta con la que desea realizar el pago: </label>
         <select name="tarjetas">
             <option v-for="t in this.tarjetas" :key="t.id" value="{{ t.id }}">terminada en {{ t.n_tarjeta.slice(-4) }}</option>
         </select>
         <label for="direcciones">Elija la dirección</label>
         <select name="direcciones" >
-            <option v-for="d in this.direcciones" :key="d.id" value="{{ d.id }}"> {{ d.nombre_calle }}, {{ d.ciudad }}, {{ d.provincia }},{{ d.codigo_postal }}</option>
+            <option class="opcion" v-for="d in this.direcciones" :key="d.id" value="{{ d.id }}"> {{ d.nombre_calle }}, {{ d.ciudad }}, {{ d.provincia }},{{ d.codigo_postal }}</option>
         </select>
-        <button class="btn__mediano btn__pedido" @click="GuardarPedido()">Realizar Pedido</button>
+        <button class="btn__mediano btn__pedido" @click="GuardarPedido()">Confirmar Pedido</button>
         <mensaje v-if="pedidoRealizado">
             <template #mensaje>Pedido Realizado con éxito.</template>
         </mensaje>
@@ -46,12 +49,15 @@ export default {
                 idUsuario: localStorage.getItem('idUsuario'),
                 tarjetas:{},
                 direcciones:{},
+                carrito:{},
+                productos:{},
                 pedidoRealizado: false,
             }
         },
         mounted(){
             this.getAddresses(),
             this.getCard()
+            this.getCarrito();
         },
         methods: {
             async getCard(){
@@ -64,9 +70,28 @@ export default {
                 this.direcciones = await response.json();
             },
 
+            async getCarrito(){
+                const response = await fetch(`http://localhost:8080/kimi/carrito/:${localStorage.getItem('idCarro')}`);
+                this.carrito = await response.json();
+                this.carrito.precioTotal = this.carrito.precioTotal.toFixed(2);
+                console.log(this.carrito);
+                const result = await fetch(`http://localhost:8080/kimi/producto/:${localStorage.getItem("idProducto")}`);
+                this.productos = await result.json();
+            },
+
             async GuardarPedido(){
+                let fecha_pedido = new Date();
+
+                const datosPedido = {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ usuarioId: `${localStorage.getItem('idUsuario')}`, productos: [`${this.productos.id}`] , fecha_pedido: `${fecha_pedido.getDate()}`, precioTotal: `${this.carrito.precioTotal}`, estado_pedido: 'enviado'})}
+                    const result = await fetch(`http://localhost:8080/kimi/pedido`, datosPedido);
+                    const data = await result.json();
                 this.pedidoRealizado = true;
-                this.$router.push('/')
+                setTimeout(() => {
+                        this.$router.push(`/`)
+                    }, 2000)
             }
         }
         

@@ -42,7 +42,7 @@ const router = createRouter({
       component: resumen
     },
     {
-      path: '/carrito',
+      path: '/carrito/:id',
       name: 'carrito',
       component: carrito
     }

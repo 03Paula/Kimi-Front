@@ -6,11 +6,6 @@ import mensaje from './mensaje.vue';
 <template>
     <section class="direccion">
         <img alt="imagen de un mapa" src="../assets/img/mapa.png" class="direccion__img" />
-        <article class="direccion__acciones">
-            <p class="accion">Editar</p>
-            <hr class="separador" />
-            <p class="accion" onclick="eliminar__dialog.showModal()">Descartar</p>
-        </article>
         <dialog class="eliminar__dialog" id="eliminar__dialog" modal-mode="mega">
           <h6 class="dialog__h6">¿Estás seguro que quieres eliminar esta dirección?</h6>
           <footer class="footer__dialog">

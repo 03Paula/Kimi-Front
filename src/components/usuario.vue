@@ -32,8 +32,6 @@
         <section id="usuario" class="datosUsuario" v-if="mostrarDatos" >
             <h2 class="datos__titulo">Mis datos</h2>
             <article class="informacionUsuario">
-                <img  class="avatar" src="../assets/img/Hachi.jpg" alt="Avatar del usuario"/>
-                <div class="lineaVertical"></div>
                 
                 <article class="datos" >
                     <h6>Nombre: {{ this.usuario.nombre }}</h6>
@@ -55,16 +53,21 @@
                 <button class="btn__mediano btn_sesion" onclick="sesion__dialog.showModal()">
                     Cerrar Sesión
                 </button>
-                <button class="btn__mediano btn_sesion">
-                    Editar datos
-                </button>
             </article>
             
         </section>
 
         <section id="pedidos" class="datosUsuario" v-if="mostrarPedidos" >
             <h2 class="datos__titulo">Mis pedidos: </h2>
-            <Pedido />
+            <div id="cTarjetas" class="contenido__pedido" v-for="p in this.pedidos" :key="p.id" >
+                <img :src="`${this.productos.imagen}`" class="pedido__imagen" />
+            <Pedido >
+                <template #nombrePedido> {{ this.productos.nombre }}</template>
+                <template #estado>{{ p.estado_pedido }}</template>
+                <template #total>{{ p.precioTotal.toFixed(2) }}</template>
+            </Pedido>
+            </div>
+            
         </section>
 
         <section id="direcciones" class="datosUsuario"  v-if="mostrarDirecciones" >
@@ -219,6 +222,8 @@
                 usuario: {},
                 tarjetas: {},
                 direcciones: {},
+                pedidos: {},
+                productos:{},
                 mostrarDatos: true,
                 mostrarPedidos:false,
                 mostrarDirecciones:false,
@@ -261,10 +266,11 @@
             this.getUser();
             this.getCard();
             this.getAddresses();
+            this.getPedido();
+            this.getProducto();
         },
         methods: {
             async getUser(){
-                console.log(this.idUsuario)
                 const response = await fetch(`http://localhost:8080/kimi/usuario/${this.idUsuario}`);
                 this.usuario = await response.json();
             },
@@ -277,6 +283,17 @@
             async getAddresses(){
                 const response = await fetch(`http://localhost:8080/kimi/direcciones/usuario/${this.idUsuario}`);
                 this.direcciones = await response.json();
+            },
+
+            async getPedido(){
+                const response = await fetch(`http://localhost:8080/kimi/pedidos/usuario/${this.idUsuario}`);
+                this.pedidos = await response.json();
+                console.log(this.pedidos);
+            },
+
+            async getProducto(){
+                const response = await fetch(`http://localhost:8080/kimi/producto/:${localStorage.getItem('idProducto')}`);
+                this.productos = await response.json();
             },
 
             cerrarSesion(){

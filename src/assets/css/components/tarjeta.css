@@ -1,6 +1,6 @@
 .tarjeta{
     width: 375px;
-    height: 270px;
+    height: 235px;
     display: flex;
     flex-direction:row;
     align-items: center;

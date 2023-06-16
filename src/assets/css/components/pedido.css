@@ -1,6 +1,7 @@
 .pedido{
-    width: 60%;
-    height: 30%;
+    max-width: 600px;
+    min-width: 400px;
+    height: 150px;
     background-color: #c2bbbb6e;
     border-radius: 20px;
     margin: auto;
@@ -8,11 +9,14 @@
 
 .pedido__caja{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content:space-between;
 }
 
-.pedido__info , .pedido__imagen{
-    margin-top: 20px;
-    margin-right: 20px;
+.pedido__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }

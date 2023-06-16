@@ -1,6 +1,7 @@
 <script setup>
     import Header from './header.vue';
     import Footer from './footer.vue';
+    import mensaje from './mensaje.vue';
 </script>
 
 <template>
@@ -29,6 +30,9 @@
                     <button class="btn__mediano btn__confirmar" type="reset" onclick="login__dialog.close()">Cerrar</button>
                 </footer>
             </dialog>
+            <mensaje v-if="mostrarMensajeLogin">
+                <template #mensaje>Se ha iniciado sesión con éxito.</template>
+            </mensaje>
         </article>
 
         <article id="registro" class="registro__form" v-if="mostrarRegistro">
@@ -53,6 +57,9 @@
                 <p v-if="coincide" class="errorRegistro">Las contraseñas no coindicen</p>
                 <button class="btn__mediano btn__registro">Regístrame</button>
         </form>
+        <mensaje v-if="mostrarMensajeRegistro">
+                <template #mensaje>Se ha registrado con éxito.</template>
+            </mensaje>
         </article>
     </article>
         </article>
@@ -116,6 +123,8 @@
                 errorContraseña:false,
                 coincide:false,
                 logueado: false,
+                mostrarMensajeLogin:false,
+                mostrarMensajeRegistro:false,
 
                 nombreReg: new RegExp(/^[A-z]{3,}[\s]*[A-z]*/),
                 emailReg: new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/),
@@ -135,6 +144,7 @@
                         this.logueado = true;
                         localStorage.setItem("idUsuario", this.usuario.id)
                         this.$router.push('/');
+                        this.mostrarMensajeLogin =true;
                     }else{
                         this.errorLogin=true;
                     }
@@ -152,19 +162,29 @@
                     };
                     const result = await fetch(`http://localhost:8080/kimi/usuario`, datosUsu);
                     const data = await result.json();
-                    alert("Registro con éxito")
-                    this.$router.push('/');
+                    this.mostrarMensajeRegistro=true;
+                    setTimeout(() => {
+                        this.$router.push(`/`)
+                    }, 2000)
                 }else{
                     alert("Ya existe un email");
                 }
                 
             },
-
             Login(){
+                let btnLogin = document.getElementById('login');
+                console.log(btnLogin);
+                let btnRegistro = document.getElementById('registro');
+                btnLogin.classList.add('active');
+                btnRegistro.classList.remove('active');
                 this.mostrarLogin = true;
                 this.mostrarRegistro = false;
             },
             Registro(){
+                let btnLogin = document.getElementById('login');
+                let btnRegistro = document.getElementById('registro');
+                btnLogin.classList.remove('active');
+                btnRegistro.classList.add('active');
                 this.mostrarLogin = false;
                 this.mostrarRegistro = true;
             },

@@ -1,5 +1,6 @@
 <script setup>
 import Header from './header.vue'
+import mensaje from './mensaje.vue';
 </script>
 <template>
     <Header />
@@ -29,9 +30,14 @@ import Header from './header.vue'
                <p> {{ cantidad }}</p>
                 <button class="btn__cantidad mas" @click="cantidadMas()" > + </button>
             </article>
-            <button class="btn__grande btn__compra">Añadir al carrito</button>
+            <button class="btn__grande btn__compra" @click="añadirCarro()">Añadir al carrito</button>
         </article>
-
+        <mensaje v-if="mostrarCarro">
+            <template #mensaje>Se ha añadido con éxito.</template>
+        </mensaje>
+        <mensaje v-if="mostrar">
+            <template #mensaje>No has iniciado sesión.</template>
+        </mensaje>
     </section>
     
 </template>
@@ -53,6 +59,8 @@ import Header from './header.vue'
             return{
                 cantidad: 1,
                 producto: {},
+                mostrar: false,
+                mostrarCarro:false,
             }
         },
         mounted(){
@@ -76,6 +84,24 @@ import Header from './header.vue'
                     this.cantidad = 1;
                 }
             },
+
+            async añadirCarro(){
+                if(localStorage.getItem("idUsuario")){
+                    const datosCarro = {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ usuarioId: `${localStorage.getItem('idUsuario')}`, productos: [`${this.producto.id}`] , cantidad: `${this.cantidad}`, precio: `${this.producto.precio * this.cantidad}`})}
+                    const result = await fetch(`http://localhost:8080/kimi/carrito`, datosCarro);
+                    const data = await result.json();
+                    this.mostrarCarro =true;
+                    localStorage.setItem("idProducto", this.producto.id);
+                    setTimeout(() => {
+                        this.$router.push(`/carrito/${data.id}`)
+                    }, 2000)
+                }else{
+                    this.mostrar= true
+                }
+            }
 
         }
     }
