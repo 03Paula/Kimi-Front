@@ -64,8 +64,9 @@
             </aside>
 
             <article class="productos">
-                <article class="coleccion-producto" v-if="producto"> 
-                    <div class="producto__carta" v-for="producto in this.productos" :key="producto.id">
+                <article  class="coleccion-producto" v-if="producto"> 
+                    
+                    <div v-if="this.productos != undefined" class="producto__carta" v-for="producto in this.productos" :key="producto.id">
                         <img :src="`${producto.imagen}`" alt="imagen del producto" class="producto__imagen" @click="verDetalles(producto.id)">
                         <h6 onclick="verDetalles(producto.id)" class="producto__nombre">{{ producto.nombre }}</h6>
                         <h5 class="producto__precio">{{ producto.precio }} €</h5>
