@@ -137,7 +137,7 @@
         methods: {
             async compruebaUsuario(email, contraseña) {
                 try{
-                    const response = await fetch(`http://localhost:8080/kimi/usuarios/email/${email}`);
+                    const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/usuarios/email/${email}`);
                     this.usuario = await response.json();
                     if(this.usuario.email == email && this.usuario.contrasenia == contraseña){
                         alert("Inicio de sesión con éxito");
@@ -160,7 +160,7 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ nombre: `${this.nombre}`, apellidos: `${this.apellidos}` , email: `${this.emailRegistro}`, telefono: `${this.telefono}`, contrasenia: `${this.contraseniaRegistro}`})
                     };
-                    const result = await fetch(`http://localhost:8080/kimi/usuario`, datosUsu);
+                    const result = await fetch(`https://springkimiback-production.up.railway.app/kimi/usuario`, datosUsu);
                     const data = await result.json();
                     this.mostrarMensajeRegistro=true;
                     setTimeout(() => {

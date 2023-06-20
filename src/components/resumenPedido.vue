@@ -61,21 +61,21 @@ export default {
         },
         methods: {
             async getCard(){
-                const response = await fetch(`http://localhost:8080/kimi/tarjetas/usuario/${this.idUsuario}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/tarjetas/usuario/${this.idUsuario}`);
                 this.tarjetas = await response.json();
             },
 
             async getAddresses(){
-                const response = await fetch(`http://localhost:8080/kimi/direcciones/usuario/${this.idUsuario}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/direcciones/usuario/${this.idUsuario}`);
                 this.direcciones = await response.json();
             },
 
             async getCarrito(){
-                const response = await fetch(`http://localhost:8080/kimi/carrito/:${localStorage.getItem('idCarro')}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/carrito/:${localStorage.getItem('idCarro')}`);
                 this.carrito = await response.json();
                 this.carrito.precioTotal = this.carrito.precioTotal.toFixed(2);
                 console.log(this.carrito);
-                const result = await fetch(`http://localhost:8080/kimi/producto/:${localStorage.getItem("idProducto")}`);
+                const result = await fetch(`https://springkimiback-production.up.railway.app/kimi/producto/:${localStorage.getItem("idProducto")}`);
                 this.productos = await result.json();
             },
 
@@ -86,7 +86,7 @@ export default {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ usuarioId: `${localStorage.getItem('idUsuario')}`, productos: [`${this.productos.id}`] , fecha_pedido: `${fecha_pedido.getDate()}`, precioTotal: `${this.carrito.precioTotal}`, estado_pedido: 'enviado'})}
-                    const result = await fetch(`http://localhost:8080/kimi/pedido`, datosPedido);
+                    const result = await fetch(`https://springkimiback-production.up.railway.app/kimi/pedido`, datosPedido);
                     const data = await result.json();
                 this.pedidoRealizado = true;
                 setTimeout(() => {

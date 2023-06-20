@@ -34,10 +34,10 @@ export default {
     },
     methods: {
         async getProductosCarrito(){
-            const response = await fetch(`http://localhost:8080/kimi/carrito/:${this.idCarrito}`);
+            const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/carrito/:${this.idCarrito}`);
             this.productosCarrito = await response.json();
             this.productosCarrito.precioTotal = this.productosCarrito.precioTotal.toFixed(2);
-            const result = await fetch(`http://localhost:8080/kimi/producto/:${localStorage.getItem("idProducto")}`);
+            const result = await fetch(`https://springkimiback-production.up.railway.app/kimi/producto/:${localStorage.getItem("idProducto")}`);
             this.productos = await result.json();
         },
         realizarPedido(){

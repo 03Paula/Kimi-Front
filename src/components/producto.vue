@@ -68,7 +68,7 @@ import mensaje from './mensaje.vue';
         },
         methods: {
            async getInfoProducto(productoId){
-                const response = await fetch(`http://localhost:8080/kimi/producto/${productoId}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/producto/${productoId}`);
                 this.producto = await response.json();
                 console.log(this.producto);
             },
@@ -91,7 +91,7 @@ import mensaje from './mensaje.vue';
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ usuarioId: `${localStorage.getItem('idUsuario')}`, productos: [`${this.producto.id}`] , cantidad: `${this.cantidad}`, precio: `${this.producto.precio * this.cantidad}`})}
-                    const result = await fetch(`http://localhost:8080/kimi/carrito`, datosCarro);
+                    const result = await fetch(`https://springkimiback-production.up.railway.app/kimi/carrito`, datosCarro);
                     const data = await result.json();
                     this.mostrarCarro =true;
                     localStorage.setItem("idProducto", this.producto.id);

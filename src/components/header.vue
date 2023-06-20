@@ -38,7 +38,7 @@
 
         computed: {
             async productos() {
-                const response = await fetch(`http://localhost:8080/kimi/producto/nombre/${buscar}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/producto/nombre/${buscar}`);
                 this.producto = await response.json();
             }
         }

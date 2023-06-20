@@ -271,28 +271,28 @@
         },
         methods: {
             async getUser(){
-                const response = await fetch(`http://localhost:8080/kimi/usuario/${this.idUsuario}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/usuario/${this.idUsuario}`);
                 this.usuario = await response.json();
             },
 
             async getCard(){
-                const response = await fetch(`http://localhost:8080/kimi/tarjetas/usuario/${this.idUsuario}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/tarjetas/usuario/${this.idUsuario}`);
                 this.tarjetas = await response.json();
             },
 
             async getAddresses(){
-                const response = await fetch(`http://localhost:8080/kimi/direcciones/usuario/${this.idUsuario}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/direcciones/usuario/${this.idUsuario}`);
                 this.direcciones = await response.json();
             },
 
             async getPedido(){
-                const response = await fetch(`http://localhost:8080/kimi/pedidos/usuario/${this.idUsuario}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/pedidos/usuario/${this.idUsuario}`);
                 this.pedidos = await response.json();
                 console.log(this.pedidos);
             },
 
             async getProducto(){
-                const response = await fetch(`http://localhost:8080/kimi/producto/:${localStorage.getItem('idProducto')}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/producto/:${localStorage.getItem('idProducto')}`);
                 this.productos = await response.json();
             },
 
@@ -376,7 +376,7 @@
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ nombre_calle: `${this.calle}`, piso: `${this.piso}` , provincia: `${this.provincia}`, pais: `${this.pais}`, codigo_postal: `${this.codigoPostal}`, ciudad: `${this.ciudad}`, usuarioId: `${this.idUsuario}`})
                     }
-                    const result = await fetch(`http://localhost:8080/kimi/direccion`, nuevaDireccion);
+                    const result = await fetch(`https://springkimiback-production.up.railway.app/kimi/direccion`, nuevaDireccion);
                     dir__dialog.close();
                     this.mostrarMensaje= true,
                     this.$router.push('usuario');
@@ -406,7 +406,7 @@
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ cvv: `${this.cvv}`, titular: `${this.titular}` , n_tarjeta: `${this.numeroTarjeta}`, vencimiento: `${this.vencimiento}`, usuarioId: `${this.idUsuario}`})
                     }
-                    const result = await fetch(`http://localhost:8080/kimi/tarjeta`, nuevaTarjeta);
+                    const result = await fetch(`https://springkimiback-production.up.railway.app/kimi/tarjeta`, nuevaTarjeta);
                     tarjeta__dialog.close();
                     this.mostrarMensaje=true;
                     
