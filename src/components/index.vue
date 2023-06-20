@@ -150,10 +150,12 @@
                 opcionSelecionada: '',
             }
         },
-        mounted(){
+        beforeMount(){
+            this.getAllProductos();
+        },
+       mounted(){
             this.getAllMangas();
             this.getAllFiguras();
-            this.getAllProductos();
         },
         methods: {
             async getAllMangas(){
