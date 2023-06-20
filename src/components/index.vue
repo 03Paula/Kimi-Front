@@ -161,7 +161,7 @@
         methods: {
             async getAllMangas(){
                 axios
-                    .get('http://localhost:8080/kimi/producto/categoria/manga')
+                    .get('https://springkimiback-production.up.railway.app/kimi/producto/categoria/manga')
                     .then((result => {
                         this.mangas = result.data
                     }))
@@ -170,26 +170,26 @@
             
             async getAllFiguras(){
                 axios
-                    .get('http://localhost:8080/kimi/producto/categoria/figura')
+                    .get('https://springkimiback-production.up.railway.app/kimi/producto/categoria/figura')
                     .then((result => {
                         this.figuras = result.data
                     }))
             },
 
             async getAllProductos(){
-                const response = await fetch(`http://localhost:8080/kimi/productos`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/productos`);
                 this.productos = await response.json();
             },
 
             async getAllProductosByAuthor(){
                 this.opcionSelecionada = document.querySelector('input[name="opcion"]:checked');
-                const response = await fetch(`http://localhost:8080/kimi/producto/autor/${this.opcionSelecionada.value}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/producto/autor/${this.opcionSelecionada.value}`);
                 this.productosAutor = await response.json();
             },
 
             async getAllProductosByGenre(){
                 this.opcionSelecionada = document.querySelector('input[name="opcion"]:checked');
-                const response = await fetch(`http://localhost:8080/kimi/producto/genero/${this.opcionSelecionada.value}`);
+                const response = await fetch(`https://springkimiback-production.up.railway.app/kimi/producto/genero/${this.opcionSelecionada.value}`);
                 this.productosGenero = await response.json();
             },
 
